@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgcc.mapper.MarketMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.sgcc.po.MarketMember" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MEMBER_NAME" property="memberName" jdbcType="VARCHAR" />
+    <result column="SUPERIOR_UNIT" property="superiorUnit" jdbcType="VARCHAR" />
+    <result column="MEMBER_CODE" property="memberCode" jdbcType="VARCHAR" />
+    <result column="SHORT_NAME" property="shortName" jdbcType="VARCHAR" />
+    <result column="ALIAS" property="alias" jdbcType="VARCHAR" />
+    <result column="CLASS_TYPE" property="classType" jdbcType="VARCHAR" />
+    <result column="SOCIAL_CODE" property="socialCode" jdbcType="VARCHAR" />
+    <result column="ACCT_BANK_NAME" property="acctBankName" jdbcType="VARCHAR" />
+    <result column="ACCT_NAME" property="acctName" jdbcType="VARCHAR" />
+    <result column="ACCT_CODE" property="acctCode" jdbcType="VARCHAR" />
+    <result column="ACCT_LIAISON" property="acctLiaison" jdbcType="VARCHAR" />
+    <result column="COMPANYID" property="companyid" jdbcType="VARCHAR" />
+    <result column="MEMBER_TYPE" property="memberType" jdbcType="VARCHAR" />
+    <result column="INSTALL_CAPACITY" property="installCapacity" jdbcType="DECIMAL" />
+    <result column="VOLTAGE_GRADE" property="voltageGrade" jdbcType="VARCHAR" />
+    <result column="POWER_PLANT_TYPE" property="powerPlantType" jdbcType="VARCHAR" />
+    <result column="STORAGE_CAPACITY" property="storageCapacity" jdbcType="DECIMAL" />
+    <result column="GEOG_REGION" property="geogRegion" jdbcType="VARCHAR" />
+    <result column="CONTROL_REGION" property="controlRegion" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="TAX_RATE" property="taxRate" jdbcType="VARCHAR" />
+    <result column="LEGAL_REPRE" property="legalRepre" jdbcType="VARCHAR" />
+    <result column="REDIT_MONEY" property="reditMoney" jdbcType="DECIMAL" />
+    <result column="PROXY_CAPACITY" property="proxyCapacity" jdbcType="DECIMAL" />
+    <result column="BUY_LEVEL" property="buyLevel" jdbcType="VARCHAR" />
+    <result column="SETTLE_COMPANY_ID" property="settleCompanyId" jdbcType="VARCHAR" />
+    <result column="AGREEMENT_CODE" property="agreementCode" jdbcType="VARCHAR" />
+    <result column="NEWSPAPER_CAPACITY" property="newspaperCapacity" jdbcType="DECIMAL" />
+    <result column="AGREEMENT_STATUS" property="agreementStatus" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="DATA_STATUS" property="dataStatus" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_CODE" property="supplierCode" jdbcType="VARCHAR" />
+    <result column="DATA_SOURCE" property="dataSource" jdbcType="VARCHAR" />
+    <result column="MEMBER_STATUS" property="memberStatus" jdbcType="VARCHAR" />
+    <result column="RATE" property="rate" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="ELECTRO_TYPE" property="electroType" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+    <result column="MARKETIZE_STATUS" property="marketizeStatus" jdbcType="VARCHAR" />
+    <result column="UNDER_BLOC_NAME" property="underBlocName" jdbcType="VARCHAR" />
+    <result column="ELECTRIC_ENERGY_TYPE" property="electricEnergyType" jdbcType="VARCHAR" />
+    <result column="STATE_GRID_TYPE" property="stateGridType" jdbcType="VARCHAR" />
+    <result column="MARKETING_USER_NO" property="marketingUserNo" jdbcType="VARCHAR" />
+    <result column="SALE_MEMBER_TYPE" property="saleMemberType" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MEMBER_NAME, SUPERIOR_UNIT, MEMBER_CODE, SHORT_NAME, ALIAS, CLASS_TYPE, SOCIAL_CODE, 
+    ACCT_BANK_NAME, ACCT_NAME, ACCT_CODE, ACCT_LIAISON, COMPANYID, MEMBER_TYPE, INSTALL_CAPACITY, 
+    VOLTAGE_GRADE, POWER_PLANT_TYPE, STORAGE_CAPACITY, GEOG_REGION, CONTROL_REGION, ADDRESS, 
+    TAX_RATE, LEGAL_REPRE, REDIT_MONEY, PROXY_CAPACITY, BUY_LEVEL, SETTLE_COMPANY_ID, 
+    AGREEMENT_CODE, NEWSPAPER_CAPACITY, AGREEMENT_STATUS, CREATE_USER_ID, UPDATE_USER_ID, 
+    DATA_STATUS, CREATE_TIME, UPDATE_TIME, START_TIME, END_TIME, SUPPLIER_CODE, DATA_SOURCE, 
+    MEMBER_STATUS, RATE, USER_ID, ELECTRO_TYPE, USER_TYPE, MARKETIZE_STATUS, UNDER_BLOC_NAME, 
+    ELECTRIC_ENERGY_TYPE, STATE_GRID_TYPE, MARKETING_USER_NO, SALE_MEMBER_TYPE, ORGANIZATION_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sgcc.po.MarketMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from market_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from market_member
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from market_member
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sgcc.po.MarketMemberExample" >
+    delete from market_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sgcc.po.MarketMember" >
+    insert into market_member (ID, MEMBER_NAME, SUPERIOR_UNIT, 
+      MEMBER_CODE, SHORT_NAME, ALIAS, 
+      CLASS_TYPE, SOCIAL_CODE, ACCT_BANK_NAME, 
+      ACCT_NAME, ACCT_CODE, ACCT_LIAISON, 
+      COMPANYID, MEMBER_TYPE, INSTALL_CAPACITY, 
+      VOLTAGE_GRADE, POWER_PLANT_TYPE, STORAGE_CAPACITY, 
+      GEOG_REGION, CONTROL_REGION, ADDRESS, 
+      TAX_RATE, LEGAL_REPRE, REDIT_MONEY, 
+      PROXY_CAPACITY, BUY_LEVEL, SETTLE_COMPANY_ID, 
+      AGREEMENT_CODE, NEWSPAPER_CAPACITY, AGREEMENT_STATUS, 
+      CREATE_USER_ID, UPDATE_USER_ID, DATA_STATUS, 
+      CREATE_TIME, UPDATE_TIME, START_TIME, 
+      END_TIME, SUPPLIER_CODE, DATA_SOURCE, 
+      MEMBER_STATUS, RATE, USER_ID, 
+      ELECTRO_TYPE, USER_TYPE, MARKETIZE_STATUS, 
+      UNDER_BLOC_NAME, ELECTRIC_ENERGY_TYPE, STATE_GRID_TYPE, 
+      MARKETING_USER_NO, SALE_MEMBER_TYPE, ORGANIZATION_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}, #{superiorUnit,jdbcType=VARCHAR}, 
+      #{memberCode,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, 
+      #{classType,jdbcType=VARCHAR}, #{socialCode,jdbcType=VARCHAR}, #{acctBankName,jdbcType=VARCHAR}, 
+      #{acctName,jdbcType=VARCHAR}, #{acctCode,jdbcType=VARCHAR}, #{acctLiaison,jdbcType=VARCHAR}, 
+      #{companyid,jdbcType=VARCHAR}, #{memberType,jdbcType=VARCHAR}, #{installCapacity,jdbcType=DECIMAL}, 
+      #{voltageGrade,jdbcType=VARCHAR}, #{powerPlantType,jdbcType=VARCHAR}, #{storageCapacity,jdbcType=DECIMAL}, 
+      #{geogRegion,jdbcType=VARCHAR}, #{controlRegion,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{taxRate,jdbcType=VARCHAR}, #{legalRepre,jdbcType=VARCHAR}, #{reditMoney,jdbcType=DECIMAL}, 
+      #{proxyCapacity,jdbcType=DECIMAL}, #{buyLevel,jdbcType=VARCHAR}, #{settleCompanyId,jdbcType=VARCHAR}, 
+      #{agreementCode,jdbcType=VARCHAR}, #{newspaperCapacity,jdbcType=DECIMAL}, #{agreementStatus,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=VARCHAR}, #{updateUserId,jdbcType=VARCHAR}, #{dataStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{supplierCode,jdbcType=VARCHAR}, #{dataSource,jdbcType=VARCHAR}, 
+      #{memberStatus,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{electroType,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{marketizeStatus,jdbcType=VARCHAR}, 
+      #{underBlocName,jdbcType=VARCHAR}, #{electricEnergyType,jdbcType=VARCHAR}, #{stateGridType,jdbcType=VARCHAR}, 
+      #{marketingUserNo,jdbcType=VARCHAR}, #{saleMemberType,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sgcc.po.MarketMember" >
+    insert into market_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="memberName != null" >
+        MEMBER_NAME,
+      </if>
+      <if test="superiorUnit != null" >
+        SUPERIOR_UNIT,
+      </if>
+      <if test="memberCode != null" >
+        MEMBER_CODE,
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME,
+      </if>
+      <if test="alias != null" >
+        ALIAS,
+      </if>
+      <if test="classType != null" >
+        CLASS_TYPE,
+      </if>
+      <if test="socialCode != null" >
+        SOCIAL_CODE,
+      </if>
+      <if test="acctBankName != null" >
+        ACCT_BANK_NAME,
+      </if>
+      <if test="acctName != null" >
+        ACCT_NAME,
+      </if>
+      <if test="acctCode != null" >
+        ACCT_CODE,
+      </if>
+      <if test="acctLiaison != null" >
+        ACCT_LIAISON,
+      </if>
+      <if test="companyid != null" >
+        COMPANYID,
+      </if>
+      <if test="memberType != null" >
+        MEMBER_TYPE,
+      </if>
+      <if test="installCapacity != null" >
+        INSTALL_CAPACITY,
+      </if>
+      <if test="voltageGrade != null" >
+        VOLTAGE_GRADE,
+      </if>
+      <if test="powerPlantType != null" >
+        POWER_PLANT_TYPE,
+      </if>
+      <if test="storageCapacity != null" >
+        STORAGE_CAPACITY,
+      </if>
+      <if test="geogRegion != null" >
+        GEOG_REGION,
+      </if>
+      <if test="controlRegion != null" >
+        CONTROL_REGION,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE,
+      </if>
+      <if test="legalRepre != null" >
+        LEGAL_REPRE,
+      </if>
+      <if test="reditMoney != null" >
+        REDIT_MONEY,
+      </if>
+      <if test="proxyCapacity != null" >
+        PROXY_CAPACITY,
+      </if>
+      <if test="buyLevel != null" >
+        BUY_LEVEL,
+      </if>
+      <if test="settleCompanyId != null" >
+        SETTLE_COMPANY_ID,
+      </if>
+      <if test="agreementCode != null" >
+        AGREEMENT_CODE,
+      </if>
+      <if test="newspaperCapacity != null" >
+        NEWSPAPER_CAPACITY,
+      </if>
+      <if test="agreementStatus != null" >
+        AGREEMENT_STATUS,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="supplierCode != null" >
+        SUPPLIER_CODE,
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE,
+      </if>
+      <if test="memberStatus != null" >
+        MEMBER_STATUS,
+      </if>
+      <if test="rate != null" >
+        RATE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="electroType != null" >
+        ELECTRO_TYPE,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="marketizeStatus != null" >
+        MARKETIZE_STATUS,
+      </if>
+      <if test="underBlocName != null" >
+        UNDER_BLOC_NAME,
+      </if>
+      <if test="electricEnergyType != null" >
+        ELECTRIC_ENERGY_TYPE,
+      </if>
+      <if test="stateGridType != null" >
+        STATE_GRID_TYPE,
+      </if>
+      <if test="marketingUserNo != null" >
+        MARKETING_USER_NO,
+      </if>
+      <if test="saleMemberType != null" >
+        SALE_MEMBER_TYPE,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="superiorUnit != null" >
+        #{superiorUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCode != null" >
+        #{memberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="classType != null" >
+        #{classType,jdbcType=VARCHAR},
+      </if>
+      <if test="socialCode != null" >
+        #{socialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctBankName != null" >
+        #{acctBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null" >
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctCode != null" >
+        #{acctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctLiaison != null" >
+        #{acctLiaison,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null" >
+        #{memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="installCapacity != null" >
+        #{installCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="voltageGrade != null" >
+        #{voltageGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="powerPlantType != null" >
+        #{powerPlantType,jdbcType=VARCHAR},
+      </if>
+      <if test="storageCapacity != null" >
+        #{storageCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="geogRegion != null" >
+        #{geogRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="controlRegion != null" >
+        #{controlRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepre != null" >
+        #{legalRepre,jdbcType=VARCHAR},
+      </if>
+      <if test="reditMoney != null" >
+        #{reditMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="proxyCapacity != null" >
+        #{proxyCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="buyLevel != null" >
+        #{buyLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="settleCompanyId != null" >
+        #{settleCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementCode != null" >
+        #{agreementCode,jdbcType=VARCHAR},
+      </if>
+      <if test="newspaperCapacity != null" >
+        #{newspaperCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="agreementStatus != null" >
+        #{agreementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCode != null" >
+        #{supplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStatus != null" >
+        #{memberStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="electroType != null" >
+        #{electroType,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="marketizeStatus != null" >
+        #{marketizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="underBlocName != null" >
+        #{underBlocName,jdbcType=VARCHAR},
+      </if>
+      <if test="electricEnergyType != null" >
+        #{electricEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="stateGridType != null" >
+        #{stateGridType,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingUserNo != null" >
+        #{marketingUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="saleMemberType != null" >
+        #{saleMemberType,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sgcc.po.MarketMemberExample" resultType="java.lang.Integer" >
+    select count(*) from market_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update market_member
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberName != null" >
+        MEMBER_NAME = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superiorUnit != null" >
+        SUPERIOR_UNIT = #{record.superiorUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberCode != null" >
+        MEMBER_CODE = #{record.memberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortName != null" >
+        SHORT_NAME = #{record.shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alias != null" >
+        ALIAS = #{record.alias,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classType != null" >
+        CLASS_TYPE = #{record.classType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.socialCode != null" >
+        SOCIAL_CODE = #{record.socialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctBankName != null" >
+        ACCT_BANK_NAME = #{record.acctBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctName != null" >
+        ACCT_NAME = #{record.acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctCode != null" >
+        ACCT_CODE = #{record.acctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctLiaison != null" >
+        ACCT_LIAISON = #{record.acctLiaison,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyid != null" >
+        COMPANYID = #{record.companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberType != null" >
+        MEMBER_TYPE = #{record.memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.installCapacity != null" >
+        INSTALL_CAPACITY = #{record.installCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.voltageGrade != null" >
+        VOLTAGE_GRADE = #{record.voltageGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerPlantType != null" >
+        POWER_PLANT_TYPE = #{record.powerPlantType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storageCapacity != null" >
+        STORAGE_CAPACITY = #{record.storageCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.geogRegion != null" >
+        GEOG_REGION = #{record.geogRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controlRegion != null" >
+        CONTROL_REGION = #{record.controlRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRate != null" >
+        TAX_RATE = #{record.taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepre != null" >
+        LEGAL_REPRE = #{record.legalRepre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reditMoney != null" >
+        REDIT_MONEY = #{record.reditMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proxyCapacity != null" >
+        PROXY_CAPACITY = #{record.proxyCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyLevel != null" >
+        BUY_LEVEL = #{record.buyLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleCompanyId != null" >
+        SETTLE_COMPANY_ID = #{record.settleCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agreementCode != null" >
+        AGREEMENT_CODE = #{record.agreementCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newspaperCapacity != null" >
+        NEWSPAPER_CAPACITY = #{record.newspaperCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agreementStatus != null" >
+        AGREEMENT_STATUS = #{record.agreementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null" >
+        CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserId != null" >
+        UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataStatus != null" >
+        DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierCode != null" >
+        SUPPLIER_CODE = #{record.supplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSource != null" >
+        DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberStatus != null" >
+        MEMBER_STATUS = #{record.memberStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        RATE = #{record.rate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.electroType != null" >
+        ELECTRO_TYPE = #{record.electroType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        USER_TYPE = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketizeStatus != null" >
+        MARKETIZE_STATUS = #{record.marketizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.underBlocName != null" >
+        UNDER_BLOC_NAME = #{record.underBlocName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.electricEnergyType != null" >
+        ELECTRIC_ENERGY_TYPE = #{record.electricEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stateGridType != null" >
+        STATE_GRID_TYPE = #{record.stateGridType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketingUserNo != null" >
+        MARKETING_USER_NO = #{record.marketingUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleMemberType != null" >
+        SALE_MEMBER_TYPE = #{record.saleMemberType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationId != null" >
+        ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update market_member
+    set ID = #{record.id,jdbcType=VARCHAR},
+      MEMBER_NAME = #{record.memberName,jdbcType=VARCHAR},
+      SUPERIOR_UNIT = #{record.superiorUnit,jdbcType=VARCHAR},
+      MEMBER_CODE = #{record.memberCode,jdbcType=VARCHAR},
+      SHORT_NAME = #{record.shortName,jdbcType=VARCHAR},
+      ALIAS = #{record.alias,jdbcType=VARCHAR},
+      CLASS_TYPE = #{record.classType,jdbcType=VARCHAR},
+      SOCIAL_CODE = #{record.socialCode,jdbcType=VARCHAR},
+      ACCT_BANK_NAME = #{record.acctBankName,jdbcType=VARCHAR},
+      ACCT_NAME = #{record.acctName,jdbcType=VARCHAR},
+      ACCT_CODE = #{record.acctCode,jdbcType=VARCHAR},
+      ACCT_LIAISON = #{record.acctLiaison,jdbcType=VARCHAR},
+      COMPANYID = #{record.companyid,jdbcType=VARCHAR},
+      MEMBER_TYPE = #{record.memberType,jdbcType=VARCHAR},
+      INSTALL_CAPACITY = #{record.installCapacity,jdbcType=DECIMAL},
+      VOLTAGE_GRADE = #{record.voltageGrade,jdbcType=VARCHAR},
+      POWER_PLANT_TYPE = #{record.powerPlantType,jdbcType=VARCHAR},
+      STORAGE_CAPACITY = #{record.storageCapacity,jdbcType=DECIMAL},
+      GEOG_REGION = #{record.geogRegion,jdbcType=VARCHAR},
+      CONTROL_REGION = #{record.controlRegion,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      TAX_RATE = #{record.taxRate,jdbcType=VARCHAR},
+      LEGAL_REPRE = #{record.legalRepre,jdbcType=VARCHAR},
+      REDIT_MONEY = #{record.reditMoney,jdbcType=DECIMAL},
+      PROXY_CAPACITY = #{record.proxyCapacity,jdbcType=DECIMAL},
+      BUY_LEVEL = #{record.buyLevel,jdbcType=VARCHAR},
+      SETTLE_COMPANY_ID = #{record.settleCompanyId,jdbcType=VARCHAR},
+      AGREEMENT_CODE = #{record.agreementCode,jdbcType=VARCHAR},
+      NEWSPAPER_CAPACITY = #{record.newspaperCapacity,jdbcType=DECIMAL},
+      AGREEMENT_STATUS = #{record.agreementStatus,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      START_TIME = #{record.startTime,jdbcType=VARCHAR},
+      END_TIME = #{record.endTime,jdbcType=VARCHAR},
+      SUPPLIER_CODE = #{record.supplierCode,jdbcType=VARCHAR},
+      DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      MEMBER_STATUS = #{record.memberStatus,jdbcType=VARCHAR},
+      RATE = #{record.rate,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      ELECTRO_TYPE = #{record.electroType,jdbcType=VARCHAR},
+      USER_TYPE = #{record.userType,jdbcType=VARCHAR},
+      MARKETIZE_STATUS = #{record.marketizeStatus,jdbcType=VARCHAR},
+      UNDER_BLOC_NAME = #{record.underBlocName,jdbcType=VARCHAR},
+      ELECTRIC_ENERGY_TYPE = #{record.electricEnergyType,jdbcType=VARCHAR},
+      STATE_GRID_TYPE = #{record.stateGridType,jdbcType=VARCHAR},
+      MARKETING_USER_NO = #{record.marketingUserNo,jdbcType=VARCHAR},
+      SALE_MEMBER_TYPE = #{record.saleMemberType,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sgcc.po.MarketMember" >
+    update market_member
+    <set >
+      <if test="memberName != null" >
+        MEMBER_NAME = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="superiorUnit != null" >
+        SUPERIOR_UNIT = #{superiorUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCode != null" >
+        MEMBER_CODE = #{memberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        ALIAS = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="classType != null" >
+        CLASS_TYPE = #{classType,jdbcType=VARCHAR},
+      </if>
+      <if test="socialCode != null" >
+        SOCIAL_CODE = #{socialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctBankName != null" >
+        ACCT_BANK_NAME = #{acctBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null" >
+        ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctCode != null" >
+        ACCT_CODE = #{acctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctLiaison != null" >
+        ACCT_LIAISON = #{acctLiaison,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        COMPANYID = #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null" >
+        MEMBER_TYPE = #{memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="installCapacity != null" >
+        INSTALL_CAPACITY = #{installCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="voltageGrade != null" >
+        VOLTAGE_GRADE = #{voltageGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="powerPlantType != null" >
+        POWER_PLANT_TYPE = #{powerPlantType,jdbcType=VARCHAR},
+      </if>
+      <if test="storageCapacity != null" >
+        STORAGE_CAPACITY = #{storageCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="geogRegion != null" >
+        GEOG_REGION = #{geogRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="controlRegion != null" >
+        CONTROL_REGION = #{controlRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE = #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepre != null" >
+        LEGAL_REPRE = #{legalRepre,jdbcType=VARCHAR},
+      </if>
+      <if test="reditMoney != null" >
+        REDIT_MONEY = #{reditMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="proxyCapacity != null" >
+        PROXY_CAPACITY = #{proxyCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="buyLevel != null" >
+        BUY_LEVEL = #{buyLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="settleCompanyId != null" >
+        SETTLE_COMPANY_ID = #{settleCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementCode != null" >
+        AGREEMENT_CODE = #{agreementCode,jdbcType=VARCHAR},
+      </if>
+      <if test="newspaperCapacity != null" >
+        NEWSPAPER_CAPACITY = #{newspaperCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="agreementStatus != null" >
+        AGREEMENT_STATUS = #{agreementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCode != null" >
+        SUPPLIER_CODE = #{supplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStatus != null" >
+        MEMBER_STATUS = #{memberStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        RATE = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="electroType != null" >
+        ELECTRO_TYPE = #{electroType,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="marketizeStatus != null" >
+        MARKETIZE_STATUS = #{marketizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="underBlocName != null" >
+        UNDER_BLOC_NAME = #{underBlocName,jdbcType=VARCHAR},
+      </if>
+      <if test="electricEnergyType != null" >
+        ELECTRIC_ENERGY_TYPE = #{electricEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="stateGridType != null" >
+        STATE_GRID_TYPE = #{stateGridType,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingUserNo != null" >
+        MARKETING_USER_NO = #{marketingUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="saleMemberType != null" >
+        SALE_MEMBER_TYPE = #{saleMemberType,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sgcc.po.MarketMember" >
+    update market_member
+    set MEMBER_NAME = #{memberName,jdbcType=VARCHAR},
+      SUPERIOR_UNIT = #{superiorUnit,jdbcType=VARCHAR},
+      MEMBER_CODE = #{memberCode,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      ALIAS = #{alias,jdbcType=VARCHAR},
+      CLASS_TYPE = #{classType,jdbcType=VARCHAR},
+      SOCIAL_CODE = #{socialCode,jdbcType=VARCHAR},
+      ACCT_BANK_NAME = #{acctBankName,jdbcType=VARCHAR},
+      ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      ACCT_CODE = #{acctCode,jdbcType=VARCHAR},
+      ACCT_LIAISON = #{acctLiaison,jdbcType=VARCHAR},
+      COMPANYID = #{companyid,jdbcType=VARCHAR},
+      MEMBER_TYPE = #{memberType,jdbcType=VARCHAR},
+      INSTALL_CAPACITY = #{installCapacity,jdbcType=DECIMAL},
+      VOLTAGE_GRADE = #{voltageGrade,jdbcType=VARCHAR},
+      POWER_PLANT_TYPE = #{powerPlantType,jdbcType=VARCHAR},
+      STORAGE_CAPACITY = #{storageCapacity,jdbcType=DECIMAL},
+      GEOG_REGION = #{geogRegion,jdbcType=VARCHAR},
+      CONTROL_REGION = #{controlRegion,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      TAX_RATE = #{taxRate,jdbcType=VARCHAR},
+      LEGAL_REPRE = #{legalRepre,jdbcType=VARCHAR},
+      REDIT_MONEY = #{reditMoney,jdbcType=DECIMAL},
+      PROXY_CAPACITY = #{proxyCapacity,jdbcType=DECIMAL},
+      BUY_LEVEL = #{buyLevel,jdbcType=VARCHAR},
+      SETTLE_COMPANY_ID = #{settleCompanyId,jdbcType=VARCHAR},
+      AGREEMENT_CODE = #{agreementCode,jdbcType=VARCHAR},
+      NEWSPAPER_CAPACITY = #{newspaperCapacity,jdbcType=DECIMAL},
+      AGREEMENT_STATUS = #{agreementStatus,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      SUPPLIER_CODE = #{supplierCode,jdbcType=VARCHAR},
+      DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      MEMBER_STATUS = #{memberStatus,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      ELECTRO_TYPE = #{electroType,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=VARCHAR},
+      MARKETIZE_STATUS = #{marketizeStatus,jdbcType=VARCHAR},
+      UNDER_BLOC_NAME = #{underBlocName,jdbcType=VARCHAR},
+      ELECTRIC_ENERGY_TYPE = #{electricEnergyType,jdbcType=VARCHAR},
+      STATE_GRID_TYPE = #{stateGridType,jdbcType=VARCHAR},
+      MARKETING_USER_NO = #{marketingUserNo,jdbcType=VARCHAR},
+      SALE_MEMBER_TYPE = #{saleMemberType,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

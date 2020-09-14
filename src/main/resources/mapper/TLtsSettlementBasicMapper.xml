@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgcc.mapper.TLtsSettlementBasicMapper" >
+  <resultMap id="BaseResultMap" type="com.sgcc.po.TLtsSettlementBasic" >
+    <id column="SETTLE_ID" property="settleId" jdbcType="VARCHAR" />
+    <result column="DATA_STATE" property="dataState" jdbcType="VARCHAR" />
+    <result column="SETTLE_MONTH" property="settleMonth" jdbcType="VARCHAR" />
+    <result column="GEN_ID" property="genId" jdbcType="VARCHAR" />
+    <result column="MEMBER_ID" property="memberId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_ID" property="contractId" jdbcType="VARCHAR" />
+    <result column="PURCHASER_ID" property="purchaserId" jdbcType="VARCHAR" />
+    <result column="COMPONENT_ID" property="componentId" jdbcType="VARCHAR" />
+    <result column="MANAGE_MODE" property="manageMode" jdbcType="VARCHAR" />
+    <result column="DATA_SOURCE" property="dataSource" jdbcType="VARCHAR" />
+    <result column="GENERATE_DATE" property="generateDate" jdbcType="VARCHAR" />
+    <result column="BELONG_UNIT" property="belongUnit" jdbcType="VARCHAR" />
+    <result column="IS_USE" property="isUse" jdbcType="VARCHAR" />
+    <result column="REVIEW_STATUS" property="reviewStatus" jdbcType="VARCHAR" />
+    <result column="TOTAL_ELECTRIC_CHARGE" property="totalElectricCharge" jdbcType="DECIMAL" />
+    <result column="TOTAL_ELECTRIC_PRICE" property="totalElectricPrice" jdbcType="DECIMAL" />
+    <result column="TOTAL_ELECTRIC_COST" property="totalElectricCost" jdbcType="DECIMAL" />
+    <result column="NOT_PERFORM_PEAK_VALLEY_CHARGE" property="notPerformPeakValleyCharge" jdbcType="DECIMAL" />
+    <result column="NOT_PERFORM_PEAK_VALLEY_PRICE" property="notPerformPeakValleyPrice" jdbcType="DECIMAL" />
+    <result column="NOT_PERFORM_PEAK_VALLEY_COST" property="notPerformPeakValleyCost" jdbcType="DECIMAL" />
+    <result column="TIP_ELECTRIC_CHARGE" property="tipElectricCharge" jdbcType="DECIMAL" />
+    <result column="TIP_ELECTRIC_PRICE" property="tipElectricPrice" jdbcType="DECIMAL" />
+    <result column="TIP_ELECTRIC_COST" property="tipElectricCost" jdbcType="DECIMAL" />
+    <result column="PEAK_ELECTRIC_CHARGE" property="peakElectricCharge" jdbcType="DECIMAL" />
+    <result column="PEAK_ELECTRIC_PRICE" property="peakElectricPrice" jdbcType="DECIMAL" />
+    <result column="PEAK_ELECTRIC_COST" property="peakElectricCost" jdbcType="DECIMAL" />
+    <result column="LEVEL_ELECTRIC_CHARGE" property="levelElectricCharge" jdbcType="DECIMAL" />
+    <result column="LEVEL_ELECTRIC_PRICE" property="levelElectricPrice" jdbcType="DECIMAL" />
+    <result column="LEVEL_ELECTRIC_COST" property="levelElectricCost" jdbcType="DECIMAL" />
+    <result column="VALLEY_ELECTRIC_CHARGE" property="valleyElectricCharge" jdbcType="DECIMAL" />
+    <result column="VALLEY_ELECTRIC_PRICE" property="valleyElectricPrice" jdbcType="DECIMAL" />
+    <result column="VALLEY_ELECTRIC_COST" property="valleyElectricCost" jdbcType="DECIMAL" />
+    <result column="IS_CONFIRM" property="isConfirm" jdbcType="VARCHAR" />
+    <result column="POWER_TYPE" property="powerType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SETTLE_ID, DATA_STATE, SETTLE_MONTH, GEN_ID, MEMBER_ID, CONTRACT_ID, PURCHASER_ID, 
+    COMPONENT_ID, MANAGE_MODE, DATA_SOURCE, GENERATE_DATE, BELONG_UNIT, IS_USE, REVIEW_STATUS, 
+    TOTAL_ELECTRIC_CHARGE, TOTAL_ELECTRIC_PRICE, TOTAL_ELECTRIC_COST, NOT_PERFORM_PEAK_VALLEY_CHARGE, 
+    NOT_PERFORM_PEAK_VALLEY_PRICE, NOT_PERFORM_PEAK_VALLEY_COST, TIP_ELECTRIC_CHARGE, 
+    TIP_ELECTRIC_PRICE, TIP_ELECTRIC_COST, PEAK_ELECTRIC_CHARGE, PEAK_ELECTRIC_PRICE, 
+    PEAK_ELECTRIC_COST, LEVEL_ELECTRIC_CHARGE, LEVEL_ELECTRIC_PRICE, LEVEL_ELECTRIC_COST, 
+    VALLEY_ELECTRIC_CHARGE, VALLEY_ELECTRIC_PRICE, VALLEY_ELECTRIC_COST, IS_CONFIRM, 
+    POWER_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sgcc.po.TLtsSettlementBasicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_lts_settlement_basic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_lts_settlement_basic
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_lts_settlement_basic
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sgcc.po.TLtsSettlementBasicExample" >
+    delete from t_lts_settlement_basic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sgcc.po.TLtsSettlementBasic" >
+    insert into t_lts_settlement_basic (SETTLE_ID, DATA_STATE, SETTLE_MONTH, 
+      GEN_ID, MEMBER_ID, CONTRACT_ID, 
+      PURCHASER_ID, COMPONENT_ID, MANAGE_MODE, 
+      DATA_SOURCE, GENERATE_DATE, BELONG_UNIT, 
+      IS_USE, REVIEW_STATUS, TOTAL_ELECTRIC_CHARGE, 
+      TOTAL_ELECTRIC_PRICE, TOTAL_ELECTRIC_COST, 
+      NOT_PERFORM_PEAK_VALLEY_CHARGE, NOT_PERFORM_PEAK_VALLEY_PRICE, 
+      NOT_PERFORM_PEAK_VALLEY_COST, TIP_ELECTRIC_CHARGE, 
+      TIP_ELECTRIC_PRICE, TIP_ELECTRIC_COST, PEAK_ELECTRIC_CHARGE, 
+      PEAK_ELECTRIC_PRICE, PEAK_ELECTRIC_COST, LEVEL_ELECTRIC_CHARGE, 
+      LEVEL_ELECTRIC_PRICE, LEVEL_ELECTRIC_COST, 
+      VALLEY_ELECTRIC_CHARGE, VALLEY_ELECTRIC_PRICE, 
+      VALLEY_ELECTRIC_COST, IS_CONFIRM, POWER_TYPE
+      )
+    values (#{settleId,jdbcType=VARCHAR}, #{dataState,jdbcType=VARCHAR}, #{settleMonth,jdbcType=VARCHAR}, 
+      #{genId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, 
+      #{purchaserId,jdbcType=VARCHAR}, #{componentId,jdbcType=VARCHAR}, #{manageMode,jdbcType=VARCHAR}, 
+      #{dataSource,jdbcType=VARCHAR}, #{generateDate,jdbcType=VARCHAR}, #{belongUnit,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=VARCHAR}, #{reviewStatus,jdbcType=VARCHAR}, #{totalElectricCharge,jdbcType=DECIMAL}, 
+      #{totalElectricPrice,jdbcType=DECIMAL}, #{totalElectricCost,jdbcType=DECIMAL}, 
+      #{notPerformPeakValleyCharge,jdbcType=DECIMAL}, #{notPerformPeakValleyPrice,jdbcType=DECIMAL}, 
+      #{notPerformPeakValleyCost,jdbcType=DECIMAL}, #{tipElectricCharge,jdbcType=DECIMAL}, 
+      #{tipElectricPrice,jdbcType=DECIMAL}, #{tipElectricCost,jdbcType=DECIMAL}, #{peakElectricCharge,jdbcType=DECIMAL}, 
+      #{peakElectricPrice,jdbcType=DECIMAL}, #{peakElectricCost,jdbcType=DECIMAL}, #{levelElectricCharge,jdbcType=DECIMAL}, 
+      #{levelElectricPrice,jdbcType=DECIMAL}, #{levelElectricCost,jdbcType=DECIMAL}, 
+      #{valleyElectricCharge,jdbcType=DECIMAL}, #{valleyElectricPrice,jdbcType=DECIMAL}, 
+      #{valleyElectricCost,jdbcType=DECIMAL}, #{isConfirm,jdbcType=VARCHAR}, #{powerType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sgcc.po.TLtsSettlementBasic" >
+    insert into t_lts_settlement_basic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="settleId != null" >
+        SETTLE_ID,
+      </if>
+      <if test="dataState != null" >
+        DATA_STATE,
+      </if>
+      <if test="settleMonth != null" >
+        SETTLE_MONTH,
+      </if>
+      <if test="genId != null" >
+        GEN_ID,
+      </if>
+      <if test="memberId != null" >
+        MEMBER_ID,
+      </if>
+      <if test="contractId != null" >
+        CONTRACT_ID,
+      </if>
+      <if test="purchaserId != null" >
+        PURCHASER_ID,
+      </if>
+      <if test="componentId != null" >
+        COMPONENT_ID,
+      </if>
+      <if test="manageMode != null" >
+        MANAGE_MODE,
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE,
+      </if>
+      <if test="generateDate != null" >
+        GENERATE_DATE,
+      </if>
+      <if test="belongUnit != null" >
+        BELONG_UNIT,
+      </if>
+      <if test="isUse != null" >
+        IS_USE,
+      </if>
+      <if test="reviewStatus != null" >
+        REVIEW_STATUS,
+      </if>
+      <if test="totalElectricCharge != null" >
+        TOTAL_ELECTRIC_CHARGE,
+      </if>
+      <if test="totalElectricPrice != null" >
+        TOTAL_ELECTRIC_PRICE,
+      </if>
+      <if test="totalElectricCost != null" >
+        TOTAL_ELECTRIC_COST,
+      </if>
+      <if test="notPerformPeakValleyCharge != null" >
+        NOT_PERFORM_PEAK_VALLEY_CHARGE,
+      </if>
+      <if test="notPerformPeakValleyPrice != null" >
+        NOT_PERFORM_PEAK_VALLEY_PRICE,
+      </if>
+      <if test="notPerformPeakValleyCost != null" >
+        NOT_PERFORM_PEAK_VALLEY_COST,
+      </if>
+      <if test="tipElectricCharge != null" >
+        TIP_ELECTRIC_CHARGE,
+      </if>
+      <if test="tipElectricPrice != null" >
+        TIP_ELECTRIC_PRICE,
+      </if>
+      <if test="tipElectricCost != null" >
+        TIP_ELECTRIC_COST,
+      </if>
+      <if test="peakElectricCharge != null" >
+        PEAK_ELECTRIC_CHARGE,
+      </if>
+      <if test="peakElectricPrice != null" >
+        PEAK_ELECTRIC_PRICE,
+      </if>
+      <if test="peakElectricCost != null" >
+        PEAK_ELECTRIC_COST,
+      </if>
+      <if test="levelElectricCharge != null" >
+        LEVEL_ELECTRIC_CHARGE,
+      </if>
+      <if test="levelElectricPrice != null" >
+        LEVEL_ELECTRIC_PRICE,
+      </if>
+      <if test="levelElectricCost != null" >
+        LEVEL_ELECTRIC_COST,
+      </if>
+      <if test="valleyElectricCharge != null" >
+        VALLEY_ELECTRIC_CHARGE,
+      </if>
+      <if test="valleyElectricPrice != null" >
+        VALLEY_ELECTRIC_PRICE,
+      </if>
+      <if test="valleyElectricCost != null" >
+        VALLEY_ELECTRIC_COST,
+      </if>
+      <if test="isConfirm != null" >
+        IS_CONFIRM,
+      </if>
+      <if test="powerType != null" >
+        POWER_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="settleId != null" >
+        #{settleId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null" >
+        #{dataState,jdbcType=VARCHAR},
+      </if>
+      <if test="settleMonth != null" >
+        #{settleMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="genId != null" >
+        #{genId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaserId != null" >
+        #{purchaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="componentId != null" >
+        #{componentId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageMode != null" >
+        #{manageMode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="generateDate != null" >
+        #{generateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="belongUnit != null" >
+        #{belongUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewStatus != null" >
+        #{reviewStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="totalElectricCharge != null" >
+        #{totalElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalElectricPrice != null" >
+        #{totalElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalElectricCost != null" >
+        #{totalElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="notPerformPeakValleyCharge != null" >
+        #{notPerformPeakValleyCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="notPerformPeakValleyPrice != null" >
+        #{notPerformPeakValleyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="notPerformPeakValleyCost != null" >
+        #{notPerformPeakValleyCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tipElectricCharge != null" >
+        #{tipElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="tipElectricPrice != null" >
+        #{tipElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tipElectricCost != null" >
+        #{tipElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="peakElectricCharge != null" >
+        #{peakElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="peakElectricPrice != null" >
+        #{peakElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="peakElectricCost != null" >
+        #{peakElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="levelElectricCharge != null" >
+        #{levelElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="levelElectricPrice != null" >
+        #{levelElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="levelElectricCost != null" >
+        #{levelElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="valleyElectricCharge != null" >
+        #{valleyElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="valleyElectricPrice != null" >
+        #{valleyElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="valleyElectricCost != null" >
+        #{valleyElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="isConfirm != null" >
+        #{isConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null" >
+        #{powerType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sgcc.po.TLtsSettlementBasicExample" resultType="java.lang.Integer" >
+    select count(*) from t_lts_settlement_basic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_lts_settlement_basic
+    <set >
+      <if test="record.settleId != null" >
+        SETTLE_ID = #{record.settleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataState != null" >
+        DATA_STATE = #{record.dataState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleMonth != null" >
+        SETTLE_MONTH = #{record.settleMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genId != null" >
+        GEN_ID = #{record.genId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null" >
+        MEMBER_ID = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractId != null" >
+        CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaserId != null" >
+        PURCHASER_ID = #{record.purchaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.componentId != null" >
+        COMPONENT_ID = #{record.componentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageMode != null" >
+        MANAGE_MODE = #{record.manageMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSource != null" >
+        DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generateDate != null" >
+        GENERATE_DATE = #{record.generateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongUnit != null" >
+        BELONG_UNIT = #{record.belongUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUse != null" >
+        IS_USE = #{record.isUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewStatus != null" >
+        REVIEW_STATUS = #{record.reviewStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalElectricCharge != null" >
+        TOTAL_ELECTRIC_CHARGE = #{record.totalElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalElectricPrice != null" >
+        TOTAL_ELECTRIC_PRICE = #{record.totalElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalElectricCost != null" >
+        TOTAL_ELECTRIC_COST = #{record.totalElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.notPerformPeakValleyCharge != null" >
+        NOT_PERFORM_PEAK_VALLEY_CHARGE = #{record.notPerformPeakValleyCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.notPerformPeakValleyPrice != null" >
+        NOT_PERFORM_PEAK_VALLEY_PRICE = #{record.notPerformPeakValleyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.notPerformPeakValleyCost != null" >
+        NOT_PERFORM_PEAK_VALLEY_COST = #{record.notPerformPeakValleyCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tipElectricCharge != null" >
+        TIP_ELECTRIC_CHARGE = #{record.tipElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tipElectricPrice != null" >
+        TIP_ELECTRIC_PRICE = #{record.tipElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tipElectricCost != null" >
+        TIP_ELECTRIC_COST = #{record.tipElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.peakElectricCharge != null" >
+        PEAK_ELECTRIC_CHARGE = #{record.peakElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.peakElectricPrice != null" >
+        PEAK_ELECTRIC_PRICE = #{record.peakElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.peakElectricCost != null" >
+        PEAK_ELECTRIC_COST = #{record.peakElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.levelElectricCharge != null" >
+        LEVEL_ELECTRIC_CHARGE = #{record.levelElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.levelElectricPrice != null" >
+        LEVEL_ELECTRIC_PRICE = #{record.levelElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.levelElectricCost != null" >
+        LEVEL_ELECTRIC_COST = #{record.levelElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.valleyElectricCharge != null" >
+        VALLEY_ELECTRIC_CHARGE = #{record.valleyElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.valleyElectricPrice != null" >
+        VALLEY_ELECTRIC_PRICE = #{record.valleyElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.valleyElectricCost != null" >
+        VALLEY_ELECTRIC_COST = #{record.valleyElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isConfirm != null" >
+        IS_CONFIRM = #{record.isConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerType != null" >
+        POWER_TYPE = #{record.powerType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_lts_settlement_basic
+    set SETTLE_ID = #{record.settleId,jdbcType=VARCHAR},
+      DATA_STATE = #{record.dataState,jdbcType=VARCHAR},
+      SETTLE_MONTH = #{record.settleMonth,jdbcType=VARCHAR},
+      GEN_ID = #{record.genId,jdbcType=VARCHAR},
+      MEMBER_ID = #{record.memberId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      PURCHASER_ID = #{record.purchaserId,jdbcType=VARCHAR},
+      COMPONENT_ID = #{record.componentId,jdbcType=VARCHAR},
+      MANAGE_MODE = #{record.manageMode,jdbcType=VARCHAR},
+      DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      GENERATE_DATE = #{record.generateDate,jdbcType=VARCHAR},
+      BELONG_UNIT = #{record.belongUnit,jdbcType=VARCHAR},
+      IS_USE = #{record.isUse,jdbcType=VARCHAR},
+      REVIEW_STATUS = #{record.reviewStatus,jdbcType=VARCHAR},
+      TOTAL_ELECTRIC_CHARGE = #{record.totalElectricCharge,jdbcType=DECIMAL},
+      TOTAL_ELECTRIC_PRICE = #{record.totalElectricPrice,jdbcType=DECIMAL},
+      TOTAL_ELECTRIC_COST = #{record.totalElectricCost,jdbcType=DECIMAL},
+      NOT_PERFORM_PEAK_VALLEY_CHARGE = #{record.notPerformPeakValleyCharge,jdbcType=DECIMAL},
+      NOT_PERFORM_PEAK_VALLEY_PRICE = #{record.notPerformPeakValleyPrice,jdbcType=DECIMAL},
+      NOT_PERFORM_PEAK_VALLEY_COST = #{record.notPerformPeakValleyCost,jdbcType=DECIMAL},
+      TIP_ELECTRIC_CHARGE = #{record.tipElectricCharge,jdbcType=DECIMAL},
+      TIP_ELECTRIC_PRICE = #{record.tipElectricPrice,jdbcType=DECIMAL},
+      TIP_ELECTRIC_COST = #{record.tipElectricCost,jdbcType=DECIMAL},
+      PEAK_ELECTRIC_CHARGE = #{record.peakElectricCharge,jdbcType=DECIMAL},
+      PEAK_ELECTRIC_PRICE = #{record.peakElectricPrice,jdbcType=DECIMAL},
+      PEAK_ELECTRIC_COST = #{record.peakElectricCost,jdbcType=DECIMAL},
+      LEVEL_ELECTRIC_CHARGE = #{record.levelElectricCharge,jdbcType=DECIMAL},
+      LEVEL_ELECTRIC_PRICE = #{record.levelElectricPrice,jdbcType=DECIMAL},
+      LEVEL_ELECTRIC_COST = #{record.levelElectricCost,jdbcType=DECIMAL},
+      VALLEY_ELECTRIC_CHARGE = #{record.valleyElectricCharge,jdbcType=DECIMAL},
+      VALLEY_ELECTRIC_PRICE = #{record.valleyElectricPrice,jdbcType=DECIMAL},
+      VALLEY_ELECTRIC_COST = #{record.valleyElectricCost,jdbcType=DECIMAL},
+      IS_CONFIRM = #{record.isConfirm,jdbcType=VARCHAR},
+      POWER_TYPE = #{record.powerType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sgcc.po.TLtsSettlementBasic" >
+    update t_lts_settlement_basic
+    <set >
+      <if test="dataState != null" >
+        DATA_STATE = #{dataState,jdbcType=VARCHAR},
+      </if>
+      <if test="settleMonth != null" >
+        SETTLE_MONTH = #{settleMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="genId != null" >
+        GEN_ID = #{genId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaserId != null" >
+        PURCHASER_ID = #{purchaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="componentId != null" >
+        COMPONENT_ID = #{componentId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageMode != null" >
+        MANAGE_MODE = #{manageMode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="generateDate != null" >
+        GENERATE_DATE = #{generateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="belongUnit != null" >
+        BELONG_UNIT = #{belongUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        IS_USE = #{isUse,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewStatus != null" >
+        REVIEW_STATUS = #{reviewStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="totalElectricCharge != null" >
+        TOTAL_ELECTRIC_CHARGE = #{totalElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalElectricPrice != null" >
+        TOTAL_ELECTRIC_PRICE = #{totalElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalElectricCost != null" >
+        TOTAL_ELECTRIC_COST = #{totalElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="notPerformPeakValleyCharge != null" >
+        NOT_PERFORM_PEAK_VALLEY_CHARGE = #{notPerformPeakValleyCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="notPerformPeakValleyPrice != null" >
+        NOT_PERFORM_PEAK_VALLEY_PRICE = #{notPerformPeakValleyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="notPerformPeakValleyCost != null" >
+        NOT_PERFORM_PEAK_VALLEY_COST = #{notPerformPeakValleyCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tipElectricCharge != null" >
+        TIP_ELECTRIC_CHARGE = #{tipElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="tipElectricPrice != null" >
+        TIP_ELECTRIC_PRICE = #{tipElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tipElectricCost != null" >
+        TIP_ELECTRIC_COST = #{tipElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="peakElectricCharge != null" >
+        PEAK_ELECTRIC_CHARGE = #{peakElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="peakElectricPrice != null" >
+        PEAK_ELECTRIC_PRICE = #{peakElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="peakElectricCost != null" >
+        PEAK_ELECTRIC_COST = #{peakElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="levelElectricCharge != null" >
+        LEVEL_ELECTRIC_CHARGE = #{levelElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="levelElectricPrice != null" >
+        LEVEL_ELECTRIC_PRICE = #{levelElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="levelElectricCost != null" >
+        LEVEL_ELECTRIC_COST = #{levelElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="valleyElectricCharge != null" >
+        VALLEY_ELECTRIC_CHARGE = #{valleyElectricCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="valleyElectricPrice != null" >
+        VALLEY_ELECTRIC_PRICE = #{valleyElectricPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="valleyElectricCost != null" >
+        VALLEY_ELECTRIC_COST = #{valleyElectricCost,jdbcType=DECIMAL},
+      </if>
+      <if test="isConfirm != null" >
+        IS_CONFIRM = #{isConfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null" >
+        POWER_TYPE = #{powerType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sgcc.po.TLtsSettlementBasic" >
+    update t_lts_settlement_basic
+    set DATA_STATE = #{dataState,jdbcType=VARCHAR},
+      SETTLE_MONTH = #{settleMonth,jdbcType=VARCHAR},
+      GEN_ID = #{genId,jdbcType=VARCHAR},
+      MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      PURCHASER_ID = #{purchaserId,jdbcType=VARCHAR},
+      COMPONENT_ID = #{componentId,jdbcType=VARCHAR},
+      MANAGE_MODE = #{manageMode,jdbcType=VARCHAR},
+      DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      GENERATE_DATE = #{generateDate,jdbcType=VARCHAR},
+      BELONG_UNIT = #{belongUnit,jdbcType=VARCHAR},
+      IS_USE = #{isUse,jdbcType=VARCHAR},
+      REVIEW_STATUS = #{reviewStatus,jdbcType=VARCHAR},
+      TOTAL_ELECTRIC_CHARGE = #{totalElectricCharge,jdbcType=DECIMAL},
+      TOTAL_ELECTRIC_PRICE = #{totalElectricPrice,jdbcType=DECIMAL},
+      TOTAL_ELECTRIC_COST = #{totalElectricCost,jdbcType=DECIMAL},
+      NOT_PERFORM_PEAK_VALLEY_CHARGE = #{notPerformPeakValleyCharge,jdbcType=DECIMAL},
+      NOT_PERFORM_PEAK_VALLEY_PRICE = #{notPerformPeakValleyPrice,jdbcType=DECIMAL},
+      NOT_PERFORM_PEAK_VALLEY_COST = #{notPerformPeakValleyCost,jdbcType=DECIMAL},
+      TIP_ELECTRIC_CHARGE = #{tipElectricCharge,jdbcType=DECIMAL},
+      TIP_ELECTRIC_PRICE = #{tipElectricPrice,jdbcType=DECIMAL},
+      TIP_ELECTRIC_COST = #{tipElectricCost,jdbcType=DECIMAL},
+      PEAK_ELECTRIC_CHARGE = #{peakElectricCharge,jdbcType=DECIMAL},
+      PEAK_ELECTRIC_PRICE = #{peakElectricPrice,jdbcType=DECIMAL},
+      PEAK_ELECTRIC_COST = #{peakElectricCost,jdbcType=DECIMAL},
+      LEVEL_ELECTRIC_CHARGE = #{levelElectricCharge,jdbcType=DECIMAL},
+      LEVEL_ELECTRIC_PRICE = #{levelElectricPrice,jdbcType=DECIMAL},
+      LEVEL_ELECTRIC_COST = #{levelElectricCost,jdbcType=DECIMAL},
+      VALLEY_ELECTRIC_CHARGE = #{valleyElectricCharge,jdbcType=DECIMAL},
+      VALLEY_ELECTRIC_PRICE = #{valleyElectricPrice,jdbcType=DECIMAL},
+      VALLEY_ELECTRIC_COST = #{valleyElectricCost,jdbcType=DECIMAL},
+      IS_CONFIRM = #{isConfirm,jdbcType=VARCHAR},
+      POWER_TYPE = #{powerType,jdbcType=VARCHAR}
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

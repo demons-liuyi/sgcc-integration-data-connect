@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgcc.mapper.PlSettleUnitMapper" >
+  <resultMap id="BaseResultMap" type="com.sgcc.po.PlSettleUnit" >
+    <id column="SETTLE_ID" property="settleId" jdbcType="VARCHAR" />
+    <result column="SETTLE_CODE" property="settleCode" jdbcType="VARCHAR" />
+    <result column="SETTLE_NAME" property="settleName" jdbcType="VARCHAR" />
+    <result column="SETTLE_ALIAS_NAME" property="settleAliasName" jdbcType="VARCHAR" />
+    <result column="MARKET_MEMBER_ID" property="marketMemberId" jdbcType="VARCHAR" />
+    <result column="SETTLE_STATUS" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="SETTLE_TYPE" property="settleType" jdbcType="VARCHAR" />
+    <result column="AUTHORIZED_TARIFF" property="authorizedTariff" jdbcType="DECIMAL" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="DATA_STATUS" property="dataStatus" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="DECIMAL" />
+    <result column="TAX_RATE" property="taxRate" jdbcType="VARCHAR" />
+    <result column="DATA_SOURCE" property="dataSource" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SETTLE_ID, SETTLE_CODE, SETTLE_NAME, SETTLE_ALIAS_NAME, MARKET_MEMBER_ID, SETTLE_STATUS, 
+    SETTLE_TYPE, AUTHORIZED_TARIFF, START_TIME, END_TIME, DATA_STATUS, CREATE_USER_ID, 
+    CREATE_TIME, UPDATE_USER_ID, UPDATE_TIME, VERSION, TAX_RATE, DATA_SOURCE, ORGANIZATION_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sgcc.po.PlSettleUnitExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pl_settle_unit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pl_settle_unit
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pl_settle_unit
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sgcc.po.PlSettleUnitExample" >
+    delete from pl_settle_unit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sgcc.po.PlSettleUnit" >
+    insert into pl_settle_unit (SETTLE_ID, SETTLE_CODE, SETTLE_NAME, 
+      SETTLE_ALIAS_NAME, MARKET_MEMBER_ID, SETTLE_STATUS, 
+      SETTLE_TYPE, AUTHORIZED_TARIFF, START_TIME, 
+      END_TIME, DATA_STATUS, CREATE_USER_ID, 
+      CREATE_TIME, UPDATE_USER_ID, UPDATE_TIME, 
+      VERSION, TAX_RATE, DATA_SOURCE, 
+      ORGANIZATION_ID)
+    values (#{settleId,jdbcType=VARCHAR}, #{settleCode,jdbcType=VARCHAR}, #{settleName,jdbcType=VARCHAR}, 
+      #{settleAliasName,jdbcType=VARCHAR}, #{marketMemberId,jdbcType=VARCHAR}, #{settleStatus,jdbcType=VARCHAR}, 
+      #{settleType,jdbcType=VARCHAR}, #{authorizedTariff,jdbcType=DECIMAL}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{dataStatus,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{version,jdbcType=DECIMAL}, #{taxRate,jdbcType=VARCHAR}, #{dataSource,jdbcType=VARCHAR}, 
+      #{organizationId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sgcc.po.PlSettleUnit" >
+    insert into pl_settle_unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="settleId != null" >
+        SETTLE_ID,
+      </if>
+      <if test="settleCode != null" >
+        SETTLE_CODE,
+      </if>
+      <if test="settleName != null" >
+        SETTLE_NAME,
+      </if>
+      <if test="settleAliasName != null" >
+        SETTLE_ALIAS_NAME,
+      </if>
+      <if test="marketMemberId != null" >
+        MARKET_MEMBER_ID,
+      </if>
+      <if test="settleStatus != null" >
+        SETTLE_STATUS,
+      </if>
+      <if test="settleType != null" >
+        SETTLE_TYPE,
+      </if>
+      <if test="authorizedTariff != null" >
+        AUTHORIZED_TARIFF,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE,
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="settleId != null" >
+        #{settleId,jdbcType=VARCHAR},
+      </if>
+      <if test="settleCode != null" >
+        #{settleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settleName != null" >
+        #{settleName,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAliasName != null" >
+        #{settleAliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketMemberId != null" >
+        #{marketMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleType != null" >
+        #{settleType,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizedTariff != null" >
+        #{authorizedTariff,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sgcc.po.PlSettleUnitExample" resultType="java.lang.Integer" >
+    select count(*) from pl_settle_unit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pl_settle_unit
+    <set >
+      <if test="record.settleId != null" >
+        SETTLE_ID = #{record.settleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleCode != null" >
+        SETTLE_CODE = #{record.settleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleName != null" >
+        SETTLE_NAME = #{record.settleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleAliasName != null" >
+        SETTLE_ALIAS_NAME = #{record.settleAliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketMemberId != null" >
+        MARKET_MEMBER_ID = #{record.marketMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleStatus != null" >
+        SETTLE_STATUS = #{record.settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleType != null" >
+        SETTLE_TYPE = #{record.settleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizedTariff != null" >
+        AUTHORIZED_TARIFF = #{record.authorizedTariff,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataStatus != null" >
+        DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null" >
+        CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserId != null" >
+        UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=DECIMAL},
+      </if>
+      <if test="record.taxRate != null" >
+        TAX_RATE = #{record.taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSource != null" >
+        DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationId != null" >
+        ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pl_settle_unit
+    set SETTLE_ID = #{record.settleId,jdbcType=VARCHAR},
+      SETTLE_CODE = #{record.settleCode,jdbcType=VARCHAR},
+      SETTLE_NAME = #{record.settleName,jdbcType=VARCHAR},
+      SETTLE_ALIAS_NAME = #{record.settleAliasName,jdbcType=VARCHAR},
+      MARKET_MEMBER_ID = #{record.marketMemberId,jdbcType=VARCHAR},
+      SETTLE_STATUS = #{record.settleStatus,jdbcType=VARCHAR},
+      SETTLE_TYPE = #{record.settleType,jdbcType=VARCHAR},
+      AUTHORIZED_TARIFF = #{record.authorizedTariff,jdbcType=DECIMAL},
+      START_TIME = #{record.startTime,jdbcType=VARCHAR},
+      END_TIME = #{record.endTime,jdbcType=VARCHAR},
+      DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=DECIMAL},
+      TAX_RATE = #{record.taxRate,jdbcType=VARCHAR},
+      DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sgcc.po.PlSettleUnit" >
+    update pl_settle_unit
+    <set >
+      <if test="settleCode != null" >
+        SETTLE_CODE = #{settleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settleName != null" >
+        SETTLE_NAME = #{settleName,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAliasName != null" >
+        SETTLE_ALIAS_NAME = #{settleAliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketMemberId != null" >
+        MARKET_MEMBER_ID = #{marketMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null" >
+        SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleType != null" >
+        SETTLE_TYPE = #{settleType,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizedTariff != null" >
+        AUTHORIZED_TARIFF = #{authorizedTariff,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE = #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sgcc.po.PlSettleUnit" >
+    update pl_settle_unit
+    set SETTLE_CODE = #{settleCode,jdbcType=VARCHAR},
+      SETTLE_NAME = #{settleName,jdbcType=VARCHAR},
+      SETTLE_ALIAS_NAME = #{settleAliasName,jdbcType=VARCHAR},
+      MARKET_MEMBER_ID = #{marketMemberId,jdbcType=VARCHAR},
+      SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      SETTLE_TYPE = #{settleType,jdbcType=VARCHAR},
+      AUTHORIZED_TARIFF = #{authorizedTariff,jdbcType=DECIMAL},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=DECIMAL},
+      TAX_RATE = #{taxRate,jdbcType=VARCHAR},
+      DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    where SETTLE_ID = #{settleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

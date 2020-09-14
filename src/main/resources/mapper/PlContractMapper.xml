@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgcc.mapper.PlContractMapper" >
+  <resultMap id="BaseResultMap" type="com.sgcc.po.PlContract" >
+    <id column="CONTRACT_ID" property="contractId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_CODE" property="contractCode" jdbcType="VARCHAR" />
+    <result column="CONTRACT_NAME" property="contractName" jdbcType="VARCHAR" />
+    <result column="CONTRACT_TYPE" property="contractType" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="VARCHAR" />
+    <result column="PURCHASER_ID" property="purchaserId" jdbcType="VARCHAR" />
+    <result column="SALER_ID" property="salerId" jdbcType="VARCHAR" />
+    <result column="TRANSFER_ID" property="transferId" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="DECIMAL" />
+    <result column="CONTRACT_ENERGY" property="contractEnergy" jdbcType="DECIMAL" />
+    <result column="POWER_TYPE" property="powerType" jdbcType="VARCHAR" />
+    <result column="CONTRACT_PRICE" property="contractPrice" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_CYCLE" property="transactionCycle" jdbcType="VARCHAR" />
+    <result column="SIGNING_TIME" property="signingTime" jdbcType="VARCHAR" />
+    <result column="GENERATION_RIGHTS_NAME" property="generationRightsName" jdbcType="VARCHAR" />
+    <result column="REPLACE_TYPE" property="replaceType" jdbcType="VARCHAR" />
+    <result column="REPLACE_CONTRACT_ID" property="replaceContractId" jdbcType="VARCHAR" />
+    <result column="DATA_STATUS" property="dataStatus" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_STATUS" property="contractStatus" jdbcType="VARCHAR" />
+    <result column="DATA_SOURCE" property="dataSource" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CONTRACT_ID, CONTRACT_CODE, CONTRACT_NAME, CONTRACT_TYPE, COMPANY_ID, PURCHASER_ID, 
+    SALER_ID, TRANSFER_ID, VERSION, CONTRACT_ENERGY, POWER_TYPE, CONTRACT_PRICE, START_DATE, 
+    END_DATE, TRANSACTION_CYCLE, SIGNING_TIME, GENERATION_RIGHTS_NAME, REPLACE_TYPE, 
+    REPLACE_CONTRACT_ID, DATA_STATUS, CREATE_TIME, UPDATE_TIME, CREATE_USER_ID, UPDATE_USER_ID, 
+    CONTRACT_STATUS, DATA_SOURCE, ORGANIZATION_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sgcc.po.PlContractExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pl_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pl_contract
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pl_contract
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sgcc.po.PlContractExample" >
+    delete from pl_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sgcc.po.PlContract" >
+    insert into pl_contract (CONTRACT_ID, CONTRACT_CODE, CONTRACT_NAME, 
+      CONTRACT_TYPE, COMPANY_ID, PURCHASER_ID, 
+      SALER_ID, TRANSFER_ID, VERSION, 
+      CONTRACT_ENERGY, POWER_TYPE, CONTRACT_PRICE, 
+      START_DATE, END_DATE, TRANSACTION_CYCLE, 
+      SIGNING_TIME, GENERATION_RIGHTS_NAME, REPLACE_TYPE, 
+      REPLACE_CONTRACT_ID, DATA_STATUS, CREATE_TIME, 
+      UPDATE_TIME, CREATE_USER_ID, UPDATE_USER_ID, 
+      CONTRACT_STATUS, DATA_SOURCE, ORGANIZATION_ID
+      )
+    values (#{contractId,jdbcType=VARCHAR}, #{contractCode,jdbcType=VARCHAR}, #{contractName,jdbcType=VARCHAR}, 
+      #{contractType,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{purchaserId,jdbcType=VARCHAR}, 
+      #{salerId,jdbcType=VARCHAR}, #{transferId,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL}, 
+      #{contractEnergy,jdbcType=DECIMAL}, #{powerType,jdbcType=VARCHAR}, #{contractPrice,jdbcType=DECIMAL}, 
+      #{startDate,jdbcType=VARCHAR}, #{endDate,jdbcType=VARCHAR}, #{transactionCycle,jdbcType=VARCHAR}, 
+      #{signingTime,jdbcType=VARCHAR}, #{generationRightsName,jdbcType=VARCHAR}, #{replaceType,jdbcType=VARCHAR}, 
+      #{replaceContractId,jdbcType=VARCHAR}, #{dataStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, #{updateUserId,jdbcType=VARCHAR}, 
+      #{contractStatus,jdbcType=VARCHAR}, #{dataSource,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sgcc.po.PlContract" >
+    insert into pl_contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        CONTRACT_ID,
+      </if>
+      <if test="contractCode != null" >
+        CONTRACT_CODE,
+      </if>
+      <if test="contractName != null" >
+        CONTRACT_NAME,
+      </if>
+      <if test="contractType != null" >
+        CONTRACT_TYPE,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="purchaserId != null" >
+        PURCHASER_ID,
+      </if>
+      <if test="salerId != null" >
+        SALER_ID,
+      </if>
+      <if test="transferId != null" >
+        TRANSFER_ID,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="contractEnergy != null" >
+        CONTRACT_ENERGY,
+      </if>
+      <if test="powerType != null" >
+        POWER_TYPE,
+      </if>
+      <if test="contractPrice != null" >
+        CONTRACT_PRICE,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="endDate != null" >
+        END_DATE,
+      </if>
+      <if test="transactionCycle != null" >
+        TRANSACTION_CYCLE,
+      </if>
+      <if test="signingTime != null" >
+        SIGNING_TIME,
+      </if>
+      <if test="generationRightsName != null" >
+        GENERATION_RIGHTS_NAME,
+      </if>
+      <if test="replaceType != null" >
+        REPLACE_TYPE,
+      </if>
+      <if test="replaceContractId != null" >
+        REPLACE_CONTRACT_ID,
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="contractStatus != null" >
+        CONTRACT_STATUS,
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCode != null" >
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null" >
+        #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null" >
+        #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaserId != null" >
+        #{purchaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="salerId != null" >
+        #{salerId,jdbcType=VARCHAR},
+      </if>
+      <if test="transferId != null" >
+        #{transferId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="contractEnergy != null" >
+        #{contractEnergy,jdbcType=DECIMAL},
+      </if>
+      <if test="powerType != null" >
+        #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPrice != null" >
+        #{contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionCycle != null" >
+        #{transactionCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="signingTime != null" >
+        #{signingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="generationRightsName != null" >
+        #{generationRightsName,jdbcType=VARCHAR},
+      </if>
+      <if test="replaceType != null" >
+        #{replaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="replaceContractId != null" >
+        #{replaceContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null" >
+        #{contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sgcc.po.PlContractExample" resultType="java.lang.Integer" >
+    select count(*) from pl_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pl_contract
+    <set >
+      <if test="record.contractId != null" >
+        CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractCode != null" >
+        CONTRACT_CODE = #{record.contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractName != null" >
+        CONTRACT_NAME = #{record.contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractType != null" >
+        CONTRACT_TYPE = #{record.contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaserId != null" >
+        PURCHASER_ID = #{record.purchaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salerId != null" >
+        SALER_ID = #{record.salerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transferId != null" >
+        TRANSFER_ID = #{record.transferId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contractEnergy != null" >
+        CONTRACT_ENERGY = #{record.contractEnergy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.powerType != null" >
+        POWER_TYPE = #{record.powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractPrice != null" >
+        CONTRACT_PRICE = #{record.contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startDate != null" >
+        START_DATE = #{record.startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endDate != null" >
+        END_DATE = #{record.endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transactionCycle != null" >
+        TRANSACTION_CYCLE = #{record.transactionCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signingTime != null" >
+        SIGNING_TIME = #{record.signingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generationRightsName != null" >
+        GENERATION_RIGHTS_NAME = #{record.generationRightsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replaceType != null" >
+        REPLACE_TYPE = #{record.replaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replaceContractId != null" >
+        REPLACE_CONTRACT_ID = #{record.replaceContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataStatus != null" >
+        DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null" >
+        CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserId != null" >
+        UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractStatus != null" >
+        CONTRACT_STATUS = #{record.contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSource != null" >
+        DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationId != null" >
+        ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pl_contract
+    set CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      CONTRACT_CODE = #{record.contractCode,jdbcType=VARCHAR},
+      CONTRACT_NAME = #{record.contractName,jdbcType=VARCHAR},
+      CONTRACT_TYPE = #{record.contractType,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=VARCHAR},
+      PURCHASER_ID = #{record.purchaserId,jdbcType=VARCHAR},
+      SALER_ID = #{record.salerId,jdbcType=VARCHAR},
+      TRANSFER_ID = #{record.transferId,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=DECIMAL},
+      CONTRACT_ENERGY = #{record.contractEnergy,jdbcType=DECIMAL},
+      POWER_TYPE = #{record.powerType,jdbcType=VARCHAR},
+      CONTRACT_PRICE = #{record.contractPrice,jdbcType=DECIMAL},
+      START_DATE = #{record.startDate,jdbcType=VARCHAR},
+      END_DATE = #{record.endDate,jdbcType=VARCHAR},
+      TRANSACTION_CYCLE = #{record.transactionCycle,jdbcType=VARCHAR},
+      SIGNING_TIME = #{record.signingTime,jdbcType=VARCHAR},
+      GENERATION_RIGHTS_NAME = #{record.generationRightsName,jdbcType=VARCHAR},
+      REPLACE_TYPE = #{record.replaceType,jdbcType=VARCHAR},
+      REPLACE_CONTRACT_ID = #{record.replaceContractId,jdbcType=VARCHAR},
+      DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      CONTRACT_STATUS = #{record.contractStatus,jdbcType=VARCHAR},
+      DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sgcc.po.PlContract" >
+    update pl_contract
+    <set >
+      <if test="contractCode != null" >
+        CONTRACT_CODE = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null" >
+        CONTRACT_NAME = #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null" >
+        CONTRACT_TYPE = #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaserId != null" >
+        PURCHASER_ID = #{purchaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="salerId != null" >
+        SALER_ID = #{salerId,jdbcType=VARCHAR},
+      </if>
+      <if test="transferId != null" >
+        TRANSFER_ID = #{transferId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="contractEnergy != null" >
+        CONTRACT_ENERGY = #{contractEnergy,jdbcType=DECIMAL},
+      </if>
+      <if test="powerType != null" >
+        POWER_TYPE = #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPrice != null" >
+        CONTRACT_PRICE = #{contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        END_DATE = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionCycle != null" >
+        TRANSACTION_CYCLE = #{transactionCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="signingTime != null" >
+        SIGNING_TIME = #{signingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="generationRightsName != null" >
+        GENERATION_RIGHTS_NAME = #{generationRightsName,jdbcType=VARCHAR},
+      </if>
+      <if test="replaceType != null" >
+        REPLACE_TYPE = #{replaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="replaceContractId != null" >
+        REPLACE_CONTRACT_ID = #{replaceContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null" >
+        CONTRACT_STATUS = #{contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sgcc.po.PlContract" >
+    update pl_contract
+    set CONTRACT_CODE = #{contractCode,jdbcType=VARCHAR},
+      CONTRACT_NAME = #{contractName,jdbcType=VARCHAR},
+      CONTRACT_TYPE = #{contractType,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=VARCHAR},
+      PURCHASER_ID = #{purchaserId,jdbcType=VARCHAR},
+      SALER_ID = #{salerId,jdbcType=VARCHAR},
+      TRANSFER_ID = #{transferId,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=DECIMAL},
+      CONTRACT_ENERGY = #{contractEnergy,jdbcType=DECIMAL},
+      POWER_TYPE = #{powerType,jdbcType=VARCHAR},
+      CONTRACT_PRICE = #{contractPrice,jdbcType=DECIMAL},
+      START_DATE = #{startDate,jdbcType=VARCHAR},
+      END_DATE = #{endDate,jdbcType=VARCHAR},
+      TRANSACTION_CYCLE = #{transactionCycle,jdbcType=VARCHAR},
+      SIGNING_TIME = #{signingTime,jdbcType=VARCHAR},
+      GENERATION_RIGHTS_NAME = #{generationRightsName,jdbcType=VARCHAR},
+      REPLACE_TYPE = #{replaceType,jdbcType=VARCHAR},
+      REPLACE_CONTRACT_ID = #{replaceContractId,jdbcType=VARCHAR},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      CONTRACT_STATUS = #{contractStatus,jdbcType=VARCHAR},
+      DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+</mapper>

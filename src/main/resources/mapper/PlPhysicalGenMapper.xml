@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgcc.mapper.PlPhysicalGenMapper" >
+  <resultMap id="BaseResultMap" type="com.sgcc.po.PlPhysicalGen" >
+    <id column="GEN_ID" property="genId" jdbcType="VARCHAR" />
+    <result column="GEN_NAME" property="genName" jdbcType="VARCHAR" />
+    <result column="GEN_CODE" property="genCode" jdbcType="VARCHAR" />
+    <result column="DISPATCH_GEN_CODE" property="dispatchGenCode" jdbcType="VARCHAR" />
+    <result column="MEMBER_ID" property="memberId" jdbcType="VARCHAR" />
+    <result column="NODE_ID" property="nodeId" jdbcType="VARCHAR" />
+    <result column="AREA_ID" property="areaId" jdbcType="VARCHAR" />
+    <result column="CAPACITY" property="capacity" jdbcType="DECIMAL" />
+    <result column="PRODUCT_TIME" property="productTime" jdbcType="VARCHAR" />
+    <result column="MERCH_TIME" property="merchTime" jdbcType="VARCHAR" />
+    <result column="FUEL_TYPE" property="fuelType" jdbcType="VARCHAR" />
+    <result column="PEAK_ABILITY" property="peakAbility" jdbcType="VARCHAR" />
+    <result column="AGC_ABILITY" property="agcAbility" jdbcType="VARCHAR" />
+    <result column="HAS_HEAT_SUPPLY" property="hasHeatSupply" jdbcType="VARCHAR" />
+    <result column="POWER_GENERATION" property="powerGeneration" jdbcType="VARCHAR" />
+    <result column="TAX_RATE" property="taxRate" jdbcType="VARCHAR" />
+    <result column="SCHEDUE_TYPE" property="schedueType" jdbcType="VARCHAR" />
+    <result column="POWER_GENE_TYPE" property="powerGeneType" jdbcType="VARCHAR" />
+    <result column="HAS_DESUFL" property="hasDesufl" jdbcType="VARCHAR" />
+    <result column="HAS_DUST_REMOVAL" property="hasDustRemoval" jdbcType="VARCHAR" />
+    <result column="HAS_SUPER_CLEAN" property="hasSuperClean" jdbcType="VARCHAR" />
+    <result column="HAS_DESUFL_FACILITIES" property="hasDesuflFacilities" jdbcType="VARCHAR" />
+    <result column="HAS_COMBINED_CYCLE" property="hasCombinedCycle" jdbcType="VARCHAR" />
+    <result column="HAS_DENITRATION" property="hasDenitration" jdbcType="VARCHAR" />
+    <result column="MIN_ECON_ABLITY" property="minEconAblity" jdbcType="DECIMAL" />
+    <result column="MAX_ECON_ABLITY" property="maxEconAblity" jdbcType="DECIMAL" />
+    <result column="MAX_ROTA_STANDBY" property="maxRotaStandby" jdbcType="DECIMAL" />
+    <result column="MAX_RUN_ABLITY" property="maxRunAblity" jdbcType="DECIMAL" />
+    <result column="MIN_STOP_CYCLE" property="minStopCycle" jdbcType="DECIMAL" />
+    <result column="MIN_RUN_ABLITY" property="minRunAblity" jdbcType="DECIMAL" />
+    <result column="ROTA_STANDBY_RATE" property="rotaStandbyRate" jdbcType="DECIMAL" />
+    <result column="START_COST" property="startCost" jdbcType="DECIMAL" />
+    <result column="VOLTAGE_CLASS" property="voltageClass" jdbcType="VARCHAR" />
+    <result column="GEN_STATUS" property="genStatus" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="DATA_STATUS" property="dataStatus" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="DECIMAL" />
+    <result column="DATA_SOURCE" property="dataSource" jdbcType="VARCHAR" />
+    <result column="MARKETIZE_STATUS" property="marketizeStatus" jdbcType="VARCHAR" />
+    <result column="HAS_SPOT_MARKET" property="hasSpotMarket" jdbcType="VARCHAR" />
+    <result column="OK_ABUD_DRY" property="okAbudDry" jdbcType="VARCHAR" />
+    <result column="OK_TIME_SHARING" property="okTimeSharing" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GEN_ID, GEN_NAME, GEN_CODE, DISPATCH_GEN_CODE, MEMBER_ID, NODE_ID, AREA_ID, CAPACITY, 
+    PRODUCT_TIME, MERCH_TIME, FUEL_TYPE, PEAK_ABILITY, AGC_ABILITY, HAS_HEAT_SUPPLY, 
+    POWER_GENERATION, TAX_RATE, SCHEDUE_TYPE, POWER_GENE_TYPE, HAS_DESUFL, HAS_DUST_REMOVAL, 
+    HAS_SUPER_CLEAN, HAS_DESUFL_FACILITIES, HAS_COMBINED_CYCLE, HAS_DENITRATION, MIN_ECON_ABLITY, 
+    MAX_ECON_ABLITY, MAX_ROTA_STANDBY, MAX_RUN_ABLITY, MIN_STOP_CYCLE, MIN_RUN_ABLITY, 
+    ROTA_STANDBY_RATE, START_COST, VOLTAGE_CLASS, GEN_STATUS, START_TIME, END_TIME, CREATE_USER_ID, 
+    CREATE_TIME, UPDATE_USER_ID, UPDATE_TIME, DATA_STATUS, VERSION, DATA_SOURCE, MARKETIZE_STATUS, 
+    HAS_SPOT_MARKET, OK_ABUD_DRY, OK_TIME_SHARING, ORGANIZATION_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sgcc.po.PlPhysicalGenExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pl_physical_gen
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pl_physical_gen
+    where GEN_ID = #{genId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pl_physical_gen
+    where GEN_ID = #{genId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sgcc.po.PlPhysicalGenExample" >
+    delete from pl_physical_gen
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sgcc.po.PlPhysicalGen" >
+    insert into pl_physical_gen (GEN_ID, GEN_NAME, GEN_CODE, 
+      DISPATCH_GEN_CODE, MEMBER_ID, NODE_ID, 
+      AREA_ID, CAPACITY, PRODUCT_TIME, 
+      MERCH_TIME, FUEL_TYPE, PEAK_ABILITY, 
+      AGC_ABILITY, HAS_HEAT_SUPPLY, POWER_GENERATION, 
+      TAX_RATE, SCHEDUE_TYPE, POWER_GENE_TYPE, 
+      HAS_DESUFL, HAS_DUST_REMOVAL, HAS_SUPER_CLEAN, 
+      HAS_DESUFL_FACILITIES, HAS_COMBINED_CYCLE, 
+      HAS_DENITRATION, MIN_ECON_ABLITY, MAX_ECON_ABLITY, 
+      MAX_ROTA_STANDBY, MAX_RUN_ABLITY, MIN_STOP_CYCLE, 
+      MIN_RUN_ABLITY, ROTA_STANDBY_RATE, START_COST, 
+      VOLTAGE_CLASS, GEN_STATUS, START_TIME, 
+      END_TIME, CREATE_USER_ID, CREATE_TIME, 
+      UPDATE_USER_ID, UPDATE_TIME, DATA_STATUS, 
+      VERSION, DATA_SOURCE, MARKETIZE_STATUS, 
+      HAS_SPOT_MARKET, OK_ABUD_DRY, OK_TIME_SHARING, 
+      ORGANIZATION_ID)
+    values (#{genId,jdbcType=VARCHAR}, #{genName,jdbcType=VARCHAR}, #{genCode,jdbcType=VARCHAR}, 
+      #{dispatchGenCode,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{capacity,jdbcType=DECIMAL}, #{productTime,jdbcType=VARCHAR}, 
+      #{merchTime,jdbcType=VARCHAR}, #{fuelType,jdbcType=VARCHAR}, #{peakAbility,jdbcType=VARCHAR}, 
+      #{agcAbility,jdbcType=VARCHAR}, #{hasHeatSupply,jdbcType=VARCHAR}, #{powerGeneration,jdbcType=VARCHAR}, 
+      #{taxRate,jdbcType=VARCHAR}, #{schedueType,jdbcType=VARCHAR}, #{powerGeneType,jdbcType=VARCHAR}, 
+      #{hasDesufl,jdbcType=VARCHAR}, #{hasDustRemoval,jdbcType=VARCHAR}, #{hasSuperClean,jdbcType=VARCHAR}, 
+      #{hasDesuflFacilities,jdbcType=VARCHAR}, #{hasCombinedCycle,jdbcType=VARCHAR}, 
+      #{hasDenitration,jdbcType=VARCHAR}, #{minEconAblity,jdbcType=DECIMAL}, #{maxEconAblity,jdbcType=DECIMAL}, 
+      #{maxRotaStandby,jdbcType=DECIMAL}, #{maxRunAblity,jdbcType=DECIMAL}, #{minStopCycle,jdbcType=DECIMAL}, 
+      #{minRunAblity,jdbcType=DECIMAL}, #{rotaStandbyRate,jdbcType=DECIMAL}, #{startCost,jdbcType=DECIMAL}, 
+      #{voltageClass,jdbcType=VARCHAR}, #{genStatus,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{dataStatus,jdbcType=VARCHAR}, 
+      #{version,jdbcType=DECIMAL}, #{dataSource,jdbcType=VARCHAR}, #{marketizeStatus,jdbcType=VARCHAR}, 
+      #{hasSpotMarket,jdbcType=VARCHAR}, #{okAbudDry,jdbcType=VARCHAR}, #{okTimeSharing,jdbcType=VARCHAR}, 
+      #{organizationId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sgcc.po.PlPhysicalGen" >
+    insert into pl_physical_gen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="genId != null" >
+        GEN_ID,
+      </if>
+      <if test="genName != null" >
+        GEN_NAME,
+      </if>
+      <if test="genCode != null" >
+        GEN_CODE,
+      </if>
+      <if test="dispatchGenCode != null" >
+        DISPATCH_GEN_CODE,
+      </if>
+      <if test="memberId != null" >
+        MEMBER_ID,
+      </if>
+      <if test="nodeId != null" >
+        NODE_ID,
+      </if>
+      <if test="areaId != null" >
+        AREA_ID,
+      </if>
+      <if test="capacity != null" >
+        CAPACITY,
+      </if>
+      <if test="productTime != null" >
+        PRODUCT_TIME,
+      </if>
+      <if test="merchTime != null" >
+        MERCH_TIME,
+      </if>
+      <if test="fuelType != null" >
+        FUEL_TYPE,
+      </if>
+      <if test="peakAbility != null" >
+        PEAK_ABILITY,
+      </if>
+      <if test="agcAbility != null" >
+        AGC_ABILITY,
+      </if>
+      <if test="hasHeatSupply != null" >
+        HAS_HEAT_SUPPLY,
+      </if>
+      <if test="powerGeneration != null" >
+        POWER_GENERATION,
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE,
+      </if>
+      <if test="schedueType != null" >
+        SCHEDUE_TYPE,
+      </if>
+      <if test="powerGeneType != null" >
+        POWER_GENE_TYPE,
+      </if>
+      <if test="hasDesufl != null" >
+        HAS_DESUFL,
+      </if>
+      <if test="hasDustRemoval != null" >
+        HAS_DUST_REMOVAL,
+      </if>
+      <if test="hasSuperClean != null" >
+        HAS_SUPER_CLEAN,
+      </if>
+      <if test="hasDesuflFacilities != null" >
+        HAS_DESUFL_FACILITIES,
+      </if>
+      <if test="hasCombinedCycle != null" >
+        HAS_COMBINED_CYCLE,
+      </if>
+      <if test="hasDenitration != null" >
+        HAS_DENITRATION,
+      </if>
+      <if test="minEconAblity != null" >
+        MIN_ECON_ABLITY,
+      </if>
+      <if test="maxEconAblity != null" >
+        MAX_ECON_ABLITY,
+      </if>
+      <if test="maxRotaStandby != null" >
+        MAX_ROTA_STANDBY,
+      </if>
+      <if test="maxRunAblity != null" >
+        MAX_RUN_ABLITY,
+      </if>
+      <if test="minStopCycle != null" >
+        MIN_STOP_CYCLE,
+      </if>
+      <if test="minRunAblity != null" >
+        MIN_RUN_ABLITY,
+      </if>
+      <if test="rotaStandbyRate != null" >
+        ROTA_STANDBY_RATE,
+      </if>
+      <if test="startCost != null" >
+        START_COST,
+      </if>
+      <if test="voltageClass != null" >
+        VOLTAGE_CLASS,
+      </if>
+      <if test="genStatus != null" >
+        GEN_STATUS,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE,
+      </if>
+      <if test="marketizeStatus != null" >
+        MARKETIZE_STATUS,
+      </if>
+      <if test="hasSpotMarket != null" >
+        HAS_SPOT_MARKET,
+      </if>
+      <if test="okAbudDry != null" >
+        OK_ABUD_DRY,
+      </if>
+      <if test="okTimeSharing != null" >
+        OK_TIME_SHARING,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="genId != null" >
+        #{genId,jdbcType=VARCHAR},
+      </if>
+      <if test="genName != null" >
+        #{genName,jdbcType=VARCHAR},
+      </if>
+      <if test="genCode != null" >
+        #{genCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchGenCode != null" >
+        #{dispatchGenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="capacity != null" >
+        #{capacity,jdbcType=DECIMAL},
+      </if>
+      <if test="productTime != null" >
+        #{productTime,jdbcType=VARCHAR},
+      </if>
+      <if test="merchTime != null" >
+        #{merchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null" >
+        #{fuelType,jdbcType=VARCHAR},
+      </if>
+      <if test="peakAbility != null" >
+        #{peakAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="agcAbility != null" >
+        #{agcAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="hasHeatSupply != null" >
+        #{hasHeatSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGeneration != null" >
+        #{powerGeneration,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="schedueType != null" >
+        #{schedueType,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGeneType != null" >
+        #{powerGeneType,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDesufl != null" >
+        #{hasDesufl,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDustRemoval != null" >
+        #{hasDustRemoval,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSuperClean != null" >
+        #{hasSuperClean,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDesuflFacilities != null" >
+        #{hasDesuflFacilities,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCombinedCycle != null" >
+        #{hasCombinedCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDenitration != null" >
+        #{hasDenitration,jdbcType=VARCHAR},
+      </if>
+      <if test="minEconAblity != null" >
+        #{minEconAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="maxEconAblity != null" >
+        #{maxEconAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="maxRotaStandby != null" >
+        #{maxRotaStandby,jdbcType=DECIMAL},
+      </if>
+      <if test="maxRunAblity != null" >
+        #{maxRunAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="minStopCycle != null" >
+        #{minStopCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="minRunAblity != null" >
+        #{minRunAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="rotaStandbyRate != null" >
+        #{rotaStandbyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="startCost != null" >
+        #{startCost,jdbcType=DECIMAL},
+      </if>
+      <if test="voltageClass != null" >
+        #{voltageClass,jdbcType=VARCHAR},
+      </if>
+      <if test="genStatus != null" >
+        #{genStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="marketizeStatus != null" >
+        #{marketizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSpotMarket != null" >
+        #{hasSpotMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="okAbudDry != null" >
+        #{okAbudDry,jdbcType=VARCHAR},
+      </if>
+      <if test="okTimeSharing != null" >
+        #{okTimeSharing,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sgcc.po.PlPhysicalGenExample" resultType="java.lang.Integer" >
+    select count(*) from pl_physical_gen
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pl_physical_gen
+    <set >
+      <if test="record.genId != null" >
+        GEN_ID = #{record.genId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genName != null" >
+        GEN_NAME = #{record.genName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genCode != null" >
+        GEN_CODE = #{record.genCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dispatchGenCode != null" >
+        DISPATCH_GEN_CODE = #{record.dispatchGenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null" >
+        MEMBER_ID = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeId != null" >
+        NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null" >
+        AREA_ID = #{record.areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.capacity != null" >
+        CAPACITY = #{record.capacity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productTime != null" >
+        PRODUCT_TIME = #{record.productTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchTime != null" >
+        MERCH_TIME = #{record.merchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fuelType != null" >
+        FUEL_TYPE = #{record.fuelType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peakAbility != null" >
+        PEAK_ABILITY = #{record.peakAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agcAbility != null" >
+        AGC_ABILITY = #{record.agcAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasHeatSupply != null" >
+        HAS_HEAT_SUPPLY = #{record.hasHeatSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerGeneration != null" >
+        POWER_GENERATION = #{record.powerGeneration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRate != null" >
+        TAX_RATE = #{record.taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schedueType != null" >
+        SCHEDUE_TYPE = #{record.schedueType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerGeneType != null" >
+        POWER_GENE_TYPE = #{record.powerGeneType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasDesufl != null" >
+        HAS_DESUFL = #{record.hasDesufl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasDustRemoval != null" >
+        HAS_DUST_REMOVAL = #{record.hasDustRemoval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasSuperClean != null" >
+        HAS_SUPER_CLEAN = #{record.hasSuperClean,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasDesuflFacilities != null" >
+        HAS_DESUFL_FACILITIES = #{record.hasDesuflFacilities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasCombinedCycle != null" >
+        HAS_COMBINED_CYCLE = #{record.hasCombinedCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasDenitration != null" >
+        HAS_DENITRATION = #{record.hasDenitration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minEconAblity != null" >
+        MIN_ECON_ABLITY = #{record.minEconAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxEconAblity != null" >
+        MAX_ECON_ABLITY = #{record.maxEconAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxRotaStandby != null" >
+        MAX_ROTA_STANDBY = #{record.maxRotaStandby,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxRunAblity != null" >
+        MAX_RUN_ABLITY = #{record.maxRunAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.minStopCycle != null" >
+        MIN_STOP_CYCLE = #{record.minStopCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.minRunAblity != null" >
+        MIN_RUN_ABLITY = #{record.minRunAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rotaStandbyRate != null" >
+        ROTA_STANDBY_RATE = #{record.rotaStandbyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startCost != null" >
+        START_COST = #{record.startCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.voltageClass != null" >
+        VOLTAGE_CLASS = #{record.voltageClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genStatus != null" >
+        GEN_STATUS = #{record.genStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null" >
+        CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserId != null" >
+        UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataStatus != null" >
+        DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dataSource != null" >
+        DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketizeStatus != null" >
+        MARKETIZE_STATUS = #{record.marketizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasSpotMarket != null" >
+        HAS_SPOT_MARKET = #{record.hasSpotMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.okAbudDry != null" >
+        OK_ABUD_DRY = #{record.okAbudDry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.okTimeSharing != null" >
+        OK_TIME_SHARING = #{record.okTimeSharing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationId != null" >
+        ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pl_physical_gen
+    set GEN_ID = #{record.genId,jdbcType=VARCHAR},
+      GEN_NAME = #{record.genName,jdbcType=VARCHAR},
+      GEN_CODE = #{record.genCode,jdbcType=VARCHAR},
+      DISPATCH_GEN_CODE = #{record.dispatchGenCode,jdbcType=VARCHAR},
+      MEMBER_ID = #{record.memberId,jdbcType=VARCHAR},
+      NODE_ID = #{record.nodeId,jdbcType=VARCHAR},
+      AREA_ID = #{record.areaId,jdbcType=VARCHAR},
+      CAPACITY = #{record.capacity,jdbcType=DECIMAL},
+      PRODUCT_TIME = #{record.productTime,jdbcType=VARCHAR},
+      MERCH_TIME = #{record.merchTime,jdbcType=VARCHAR},
+      FUEL_TYPE = #{record.fuelType,jdbcType=VARCHAR},
+      PEAK_ABILITY = #{record.peakAbility,jdbcType=VARCHAR},
+      AGC_ABILITY = #{record.agcAbility,jdbcType=VARCHAR},
+      HAS_HEAT_SUPPLY = #{record.hasHeatSupply,jdbcType=VARCHAR},
+      POWER_GENERATION = #{record.powerGeneration,jdbcType=VARCHAR},
+      TAX_RATE = #{record.taxRate,jdbcType=VARCHAR},
+      SCHEDUE_TYPE = #{record.schedueType,jdbcType=VARCHAR},
+      POWER_GENE_TYPE = #{record.powerGeneType,jdbcType=VARCHAR},
+      HAS_DESUFL = #{record.hasDesufl,jdbcType=VARCHAR},
+      HAS_DUST_REMOVAL = #{record.hasDustRemoval,jdbcType=VARCHAR},
+      HAS_SUPER_CLEAN = #{record.hasSuperClean,jdbcType=VARCHAR},
+      HAS_DESUFL_FACILITIES = #{record.hasDesuflFacilities,jdbcType=VARCHAR},
+      HAS_COMBINED_CYCLE = #{record.hasCombinedCycle,jdbcType=VARCHAR},
+      HAS_DENITRATION = #{record.hasDenitration,jdbcType=VARCHAR},
+      MIN_ECON_ABLITY = #{record.minEconAblity,jdbcType=DECIMAL},
+      MAX_ECON_ABLITY = #{record.maxEconAblity,jdbcType=DECIMAL},
+      MAX_ROTA_STANDBY = #{record.maxRotaStandby,jdbcType=DECIMAL},
+      MAX_RUN_ABLITY = #{record.maxRunAblity,jdbcType=DECIMAL},
+      MIN_STOP_CYCLE = #{record.minStopCycle,jdbcType=DECIMAL},
+      MIN_RUN_ABLITY = #{record.minRunAblity,jdbcType=DECIMAL},
+      ROTA_STANDBY_RATE = #{record.rotaStandbyRate,jdbcType=DECIMAL},
+      START_COST = #{record.startCost,jdbcType=DECIMAL},
+      VOLTAGE_CLASS = #{record.voltageClass,jdbcType=VARCHAR},
+      GEN_STATUS = #{record.genStatus,jdbcType=VARCHAR},
+      START_TIME = #{record.startTime,jdbcType=VARCHAR},
+      END_TIME = #{record.endTime,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=DECIMAL},
+      DATA_SOURCE = #{record.dataSource,jdbcType=VARCHAR},
+      MARKETIZE_STATUS = #{record.marketizeStatus,jdbcType=VARCHAR},
+      HAS_SPOT_MARKET = #{record.hasSpotMarket,jdbcType=VARCHAR},
+      OK_ABUD_DRY = #{record.okAbudDry,jdbcType=VARCHAR},
+      OK_TIME_SHARING = #{record.okTimeSharing,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sgcc.po.PlPhysicalGen" >
+    update pl_physical_gen
+    <set >
+      <if test="genName != null" >
+        GEN_NAME = #{genName,jdbcType=VARCHAR},
+      </if>
+      <if test="genCode != null" >
+        GEN_CODE = #{genCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchGenCode != null" >
+        DISPATCH_GEN_CODE = #{dispatchGenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        NODE_ID = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        AREA_ID = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="capacity != null" >
+        CAPACITY = #{capacity,jdbcType=DECIMAL},
+      </if>
+      <if test="productTime != null" >
+        PRODUCT_TIME = #{productTime,jdbcType=VARCHAR},
+      </if>
+      <if test="merchTime != null" >
+        MERCH_TIME = #{merchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null" >
+        FUEL_TYPE = #{fuelType,jdbcType=VARCHAR},
+      </if>
+      <if test="peakAbility != null" >
+        PEAK_ABILITY = #{peakAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="agcAbility != null" >
+        AGC_ABILITY = #{agcAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="hasHeatSupply != null" >
+        HAS_HEAT_SUPPLY = #{hasHeatSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGeneration != null" >
+        POWER_GENERATION = #{powerGeneration,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE = #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="schedueType != null" >
+        SCHEDUE_TYPE = #{schedueType,jdbcType=VARCHAR},
+      </if>
+      <if test="powerGeneType != null" >
+        POWER_GENE_TYPE = #{powerGeneType,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDesufl != null" >
+        HAS_DESUFL = #{hasDesufl,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDustRemoval != null" >
+        HAS_DUST_REMOVAL = #{hasDustRemoval,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSuperClean != null" >
+        HAS_SUPER_CLEAN = #{hasSuperClean,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDesuflFacilities != null" >
+        HAS_DESUFL_FACILITIES = #{hasDesuflFacilities,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCombinedCycle != null" >
+        HAS_COMBINED_CYCLE = #{hasCombinedCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDenitration != null" >
+        HAS_DENITRATION = #{hasDenitration,jdbcType=VARCHAR},
+      </if>
+      <if test="minEconAblity != null" >
+        MIN_ECON_ABLITY = #{minEconAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="maxEconAblity != null" >
+        MAX_ECON_ABLITY = #{maxEconAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="maxRotaStandby != null" >
+        MAX_ROTA_STANDBY = #{maxRotaStandby,jdbcType=DECIMAL},
+      </if>
+      <if test="maxRunAblity != null" >
+        MAX_RUN_ABLITY = #{maxRunAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="minStopCycle != null" >
+        MIN_STOP_CYCLE = #{minStopCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="minRunAblity != null" >
+        MIN_RUN_ABLITY = #{minRunAblity,jdbcType=DECIMAL},
+      </if>
+      <if test="rotaStandbyRate != null" >
+        ROTA_STANDBY_RATE = #{rotaStandbyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="startCost != null" >
+        START_COST = #{startCost,jdbcType=DECIMAL},
+      </if>
+      <if test="voltageClass != null" >
+        VOLTAGE_CLASS = #{voltageClass,jdbcType=VARCHAR},
+      </if>
+      <if test="genStatus != null" >
+        GEN_STATUS = #{genStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="dataSource != null" >
+        DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="marketizeStatus != null" >
+        MARKETIZE_STATUS = #{marketizeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSpotMarket != null" >
+        HAS_SPOT_MARKET = #{hasSpotMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="okAbudDry != null" >
+        OK_ABUD_DRY = #{okAbudDry,jdbcType=VARCHAR},
+      </if>
+      <if test="okTimeSharing != null" >
+        OK_TIME_SHARING = #{okTimeSharing,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GEN_ID = #{genId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sgcc.po.PlPhysicalGen" >
+    update pl_physical_gen
+    set GEN_NAME = #{genName,jdbcType=VARCHAR},
+      GEN_CODE = #{genCode,jdbcType=VARCHAR},
+      DISPATCH_GEN_CODE = #{dispatchGenCode,jdbcType=VARCHAR},
+      MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      NODE_ID = #{nodeId,jdbcType=VARCHAR},
+      AREA_ID = #{areaId,jdbcType=VARCHAR},
+      CAPACITY = #{capacity,jdbcType=DECIMAL},
+      PRODUCT_TIME = #{productTime,jdbcType=VARCHAR},
+      MERCH_TIME = #{merchTime,jdbcType=VARCHAR},
+      FUEL_TYPE = #{fuelType,jdbcType=VARCHAR},
+      PEAK_ABILITY = #{peakAbility,jdbcType=VARCHAR},
+      AGC_ABILITY = #{agcAbility,jdbcType=VARCHAR},
+      HAS_HEAT_SUPPLY = #{hasHeatSupply,jdbcType=VARCHAR},
+      POWER_GENERATION = #{powerGeneration,jdbcType=VARCHAR},
+      TAX_RATE = #{taxRate,jdbcType=VARCHAR},
+      SCHEDUE_TYPE = #{schedueType,jdbcType=VARCHAR},
+      POWER_GENE_TYPE = #{powerGeneType,jdbcType=VARCHAR},
+      HAS_DESUFL = #{hasDesufl,jdbcType=VARCHAR},
+      HAS_DUST_REMOVAL = #{hasDustRemoval,jdbcType=VARCHAR},
+      HAS_SUPER_CLEAN = #{hasSuperClean,jdbcType=VARCHAR},
+      HAS_DESUFL_FACILITIES = #{hasDesuflFacilities,jdbcType=VARCHAR},
+      HAS_COMBINED_CYCLE = #{hasCombinedCycle,jdbcType=VARCHAR},
+      HAS_DENITRATION = #{hasDenitration,jdbcType=VARCHAR},
+      MIN_ECON_ABLITY = #{minEconAblity,jdbcType=DECIMAL},
+      MAX_ECON_ABLITY = #{maxEconAblity,jdbcType=DECIMAL},
+      MAX_ROTA_STANDBY = #{maxRotaStandby,jdbcType=DECIMAL},
+      MAX_RUN_ABLITY = #{maxRunAblity,jdbcType=DECIMAL},
+      MIN_STOP_CYCLE = #{minStopCycle,jdbcType=DECIMAL},
+      MIN_RUN_ABLITY = #{minRunAblity,jdbcType=DECIMAL},
+      ROTA_STANDBY_RATE = #{rotaStandbyRate,jdbcType=DECIMAL},
+      START_COST = #{startCost,jdbcType=DECIMAL},
+      VOLTAGE_CLASS = #{voltageClass,jdbcType=VARCHAR},
+      GEN_STATUS = #{genStatus,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=DECIMAL},
+      DATA_SOURCE = #{dataSource,jdbcType=VARCHAR},
+      MARKETIZE_STATUS = #{marketizeStatus,jdbcType=VARCHAR},
+      HAS_SPOT_MARKET = #{hasSpotMarket,jdbcType=VARCHAR},
+      OK_ABUD_DRY = #{okAbudDry,jdbcType=VARCHAR},
+      OK_TIME_SHARING = #{okTimeSharing,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    where GEN_ID = #{genId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgcc.mapper.MonthlyDecomposeMapper" >
+  <resultMap id="BaseResultMap" type="com.sgcc.po.MonthlyDecompose" >
+    <id column="DECOMPOSE_ID" property="decomposeId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_ID" property="contractId" jdbcType="VARCHAR" />
+    <result column="PARTICULAR_YEAR" property="particularYear" jdbcType="DECIMAL" />
+    <result column="MONTH" property="month" jdbcType="DECIMAL" />
+    <result column="DECOMPOSE_ELECTRICITY" property="decomposeElectricity" jdbcType="DECIMAL" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="DECIMAL" />
+    <result column="DATA_STATUS" property="dataStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DECOMPOSE_ID, CONTRACT_ID, PARTICULAR_YEAR, MONTH, DECOMPOSE_ELECTRICITY, CREATE_USER_ID, 
+    CREATE_TIME, UPDATE_USER_ID, UPDATE_TIME, VERSION, DATA_STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sgcc.po.MonthlyDecomposeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from monthly_decompose
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from monthly_decompose
+    where DECOMPOSE_ID = #{decomposeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from monthly_decompose
+    where DECOMPOSE_ID = #{decomposeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sgcc.po.MonthlyDecomposeExample" >
+    delete from monthly_decompose
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sgcc.po.MonthlyDecompose" >
+    insert into monthly_decompose (DECOMPOSE_ID, CONTRACT_ID, PARTICULAR_YEAR, 
+      MONTH, DECOMPOSE_ELECTRICITY, CREATE_USER_ID, 
+      CREATE_TIME, UPDATE_USER_ID, UPDATE_TIME, 
+      VERSION, DATA_STATUS)
+    values (#{decomposeId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{particularYear,jdbcType=DECIMAL}, 
+      #{month,jdbcType=DECIMAL}, #{decomposeElectricity,jdbcType=DECIMAL}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{version,jdbcType=DECIMAL}, #{dataStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sgcc.po.MonthlyDecompose" >
+    insert into monthly_decompose
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="decomposeId != null" >
+        DECOMPOSE_ID,
+      </if>
+      <if test="contractId != null" >
+        CONTRACT_ID,
+      </if>
+      <if test="particularYear != null" >
+        PARTICULAR_YEAR,
+      </if>
+      <if test="month != null" >
+        MONTH,
+      </if>
+      <if test="decomposeElectricity != null" >
+        DECOMPOSE_ELECTRICITY,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="decomposeId != null" >
+        #{decomposeId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="particularYear != null" >
+        #{particularYear,jdbcType=DECIMAL},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=DECIMAL},
+      </if>
+      <if test="decomposeElectricity != null" >
+        #{decomposeElectricity,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="dataStatus != null" >
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sgcc.po.MonthlyDecomposeExample" resultType="java.lang.Integer" >
+    select count(*) from monthly_decompose
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update monthly_decompose
+    <set >
+      <if test="record.decomposeId != null" >
+        DECOMPOSE_ID = #{record.decomposeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractId != null" >
+        CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.particularYear != null" >
+        PARTICULAR_YEAR = #{record.particularYear,jdbcType=DECIMAL},
+      </if>
+      <if test="record.month != null" >
+        MONTH = #{record.month,jdbcType=DECIMAL},
+      </if>
+      <if test="record.decomposeElectricity != null" >
+        DECOMPOSE_ELECTRICITY = #{record.decomposeElectricity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createUserId != null" >
+        CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserId != null" >
+        UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dataStatus != null" >
+        DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update monthly_decompose
+    set DECOMPOSE_ID = #{record.decomposeId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      PARTICULAR_YEAR = #{record.particularYear,jdbcType=DECIMAL},
+      MONTH = #{record.month,jdbcType=DECIMAL},
+      DECOMPOSE_ELECTRICITY = #{record.decomposeElectricity,jdbcType=DECIMAL},
+      CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=DECIMAL},
+      DATA_STATUS = #{record.dataStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sgcc.po.MonthlyDecompose" >
+    update monthly_decompose
+    <set >
+      <if test="contractId != null" >
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="particularYear != null" >
+        PARTICULAR_YEAR = #{particularYear,jdbcType=DECIMAL},
+      </if>
+      <if test="month != null" >
+        MONTH = #{month,jdbcType=DECIMAL},
+      </if>
+      <if test="decomposeElectricity != null" >
+        DECOMPOSE_ELECTRICITY = #{decomposeElectricity,jdbcType=DECIMAL},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="dataStatus != null" >
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DECOMPOSE_ID = #{decomposeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sgcc.po.MonthlyDecompose" >
+    update monthly_decompose
+    set CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      PARTICULAR_YEAR = #{particularYear,jdbcType=DECIMAL},
+      MONTH = #{month,jdbcType=DECIMAL},
+      DECOMPOSE_ELECTRICITY = #{decomposeElectricity,jdbcType=DECIMAL},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=DECIMAL},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR}
+    where DECOMPOSE_ID = #{decomposeId,jdbcType=VARCHAR}
+  </update>
+</mapper>
